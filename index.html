@@ -1,0 +1,1729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>newt. nootropics — Fix Your Focus</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --yellow: #F0E030;
+      --yellow-hover: #E4D420;
+      --cream: #F5F3EF;
+      --cream-alt: #EFECEA;
+      --black: #0A0A0A;
+      --near-black: #1A1A1A;
+      --text: #1A1A1A;
+      --text-muted: rgba(26,26,26,0.5);
+      --text-dim: rgba(26,26,26,0.35);
+      --text-white: #fff;
+      --text-white-muted: rgba(255,255,255,0.55);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      height: 52px;
+      background: rgba(10,10,10,0.82);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 21px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.03em;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+    .nav-logo-dot {
+      display: inline-block;
+      width: 7px; height: 7px;
+      background: var(--yellow);
+      border-radius: 50%;
+      margin-left: 1px;
+      position: relative; top: 1px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.72);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-cta {
+      background: var(--yellow);
+      color: var(--black);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 20px;
+      border-radius: 980px;
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .nav-cta:hover { background: var(--yellow-hover); transform: translateY(-1px); }
+    .nav-cta:active { transform: scale(0.97); }
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px; height: 2px;
+      background: #fff;
+      border-radius: 2px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      padding: 100px 40px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-watermark {
+      position: absolute;
+      left: -60px;
+      bottom: 0;
+      width: 480px;
+      opacity: 0.055;
+      mix-blend-mode: multiply;
+      pointer-events: none;
+      user-select: none;
+      border: none;
+      outline: none;
+      box-shadow: none;
+      display: block;
+      -webkit-mask-image: radial-gradient(ellipse 75% 80% at 35% 60%, black 30%, transparent 80%);
+      mask-image: radial-gradient(ellipse 75% 80% at 35% 60%, black 30%, transparent 80%);
+    }
+    .hero-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 56px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-text {
+      flex: 1;
+      min-width: 0;
+    }
+    .hero-visual {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 20px;
+    }
+    .hero-headline {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(44px, 6vw, 76px);
+      font-weight: 700;
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+      color: var(--near-black);
+      margin-bottom: 20px;
+    }
+    .hero-headline em {
+      font-style: italic;
+      color: var(--near-black);
+      position: relative;
+    }
+    .hero-headline em::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      bottom: 3px;
+      height: 5px;
+      background: var(--yellow);
+      z-index: -1;
+      border-radius: 2px;
+    }
+    .hero-sub {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.65;
+      color: var(--text-muted);
+      max-width: 380px;
+      margin-bottom: 36px;
+      letter-spacing: -0.01em;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn-fill {
+      background: var(--near-black);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 13px 32px;
+      border-radius: 980px;
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+    }
+    .btn-fill:hover {
+      background: #2a2a2a;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.22);
+    }
+    .btn-fill:active { transform: scale(0.97); }
+    .btn-fill-yellow {
+      background: var(--yellow);
+      color: var(--black);
+      box-shadow: 0 2px 16px rgba(240,224,48,0.3);
+    }
+    .btn-fill-yellow:hover {
+      background: var(--yellow-hover);
+      box-shadow: 0 6px 24px rgba(240,224,48,0.4);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 15px;
+      font-weight: 400;
+      padding: 12px 32px;
+      border-radius: 980px;
+      border: 1px solid rgba(26,26,26,0.2);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      transition: border-color 0.2s, color 0.2s, transform 0.15s;
+    }
+    .btn-ghost:hover {
+      border-color: rgba(26,26,26,0.5);
+      color: var(--near-black);
+      transform: translateY(-2px);
+    }
+    .btn-ghost:active { transform: scale(0.97); }
+    .hero-product-wrap {
+      position: relative;
+      display: inline-block;
+    }
+    .hero-product-img {
+      width: 103px;
+      border-radius: 0;
+      mix-blend-mode: multiply;
+      filter: contrast(1.12) brightness(1.02) saturate(1.08);
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+    .hero-product-img:hover {
+      transform: translateY(-6px) scale(1.02);
+      filter: contrast(1.15) brightness(1.04) saturate(1.1);
+    }
+    .hero-badge {
+      position: absolute;
+      top: -10px; right: -18px;
+      background: var(--yellow);
+      color: var(--black);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 11px;
+      border-radius: 980px;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(240,224,48,0.4);
+    }
+
+    /* ── WORDMARK STRIP ── */
+    .logo-strip {
+      background: var(--near-black);
+      padding: 14px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .logo-strip-track {
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      animation: logoScroll 22s linear infinite;
+      will-change: transform;
+    }
+    @keyframes logoScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .logo-strip-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      margin: 0 44px;
+      opacity: 0.65;
+      flex-shrink: 0;
+    }
+    .logo-strip-word {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--yellow);
+      letter-spacing: -0.03em;
+    }
+    .logo-strip-dot {
+      display: inline-block;
+      width: 7px; height: 7px;
+      background: var(--yellow);
+      border-radius: 50%;
+      margin-left: 1px;
+      position: relative;
+      top: 1px;
+      flex-shrink: 0;
+    }
+    .logo-strip-sub {
+      font-size: 8px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-left: 5px;
+      opacity: 0.7;
+      align-self: flex-end;
+      margin-bottom: 2px;
+    }
+
+    /* ── SECTIONS ── */
+    .s-cream { background: var(--cream); padding: 100px 24px; }
+    .s-white { background: #fff; padding: 100px 24px; }
+    .s-dark { background: var(--black); padding: 100px 24px; }
+    .container { max-width: 980px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .section-label-dark { color: var(--text-dim); }
+    .section-label-light { color: rgba(255,255,255,0.3); }
+
+    .section-heading {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 700;
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .section-heading-dark { color: var(--near-black); }
+    .section-heading-light { color: #fff; }
+
+    /* ── BENEFITS ── */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .benefit-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 32px 24px 28px;
+      border: 1px solid rgba(26,26,26,0.06);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .benefit-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(26,26,26,0.1);
+    }
+    .benefit-icon {
+      width: 44px; height: 44px;
+      background: var(--yellow);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .benefit-icon svg {
+      width: 22px; height: 22px;
+      color: var(--black);
+    }
+    .benefit-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--near-black);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+    .benefit-ingredient {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 14px;
+    }
+    .benefit-desc {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-muted);
+      line-height: 1.6;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── INGREDIENTS ── */
+    .ingr-groups {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .ingr-group {
+      background: #141414;
+      border-radius: 14px;
+      padding: 28px 24px 30px;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .ingr-group:hover {
+      transform: translateY(-3px);
+      border-color: rgba(240,224,48,0.18);
+    }
+    .ingr-group-num {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(240,224,48,0.5);
+      margin-bottom: 10px;
+    }
+    .ingr-group-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 22px;
+    }
+    .ingr-list {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+    .ingr-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.65);
+      letter-spacing: -0.01em;
+    }
+    .ingr-item::before {
+      content: '';
+      display: inline-block;
+      width: 5px; height: 5px;
+      background: var(--yellow);
+      border-radius: 50%;
+      flex-shrink: 0;
+      opacity: 0.65;
+    }
+    .full-label {
+      text-align: center;
+      font-size: 12px;
+      color: rgba(255,255,255,0.2);
+      letter-spacing: -0.01em;
+      line-height: 1.8;
+    }
+
+    /* ── TRIAL ── */
+    .trial-section {
+      background: var(--black);
+      padding: 110px 24px 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .trial-watermark {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      opacity: 0.03;
+      mix-blend-mode: screen;
+      pointer-events: none;
+      user-select: none;
+    }
+    .trial-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(240,224,48,0.09);
+      border: 1px solid rgba(240,224,48,0.2);
+      color: var(--yellow);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 7px 16px;
+      border-radius: 980px;
+      margin-bottom: 32px;
+    }
+    .trial-perks {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+      margin: 44px 0 48px;
+    }
+    .perk-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 44px;
+      font-weight: 700;
+      color: var(--yellow);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .perk-label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.38);
+      letter-spacing: -0.01em;
+    }
+    .trial-disclaimer {
+      font-size: 12px;
+      color: rgba(255,255,255,0.22);
+      letter-spacing: -0.01em;
+      margin-top: 18px;
+      line-height: 1.6;
+    }
+    /* ── TRIAL TRUST CHIPS ── */
+    @keyframes chipReveal {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulseHalo {
+      0%, 100% { opacity: 0.5; transform: translate(-50%,-50%) scale(1); }
+      50%       { opacity: 0.9; transform: translate(-50%,-50%) scale(1.12); }
+    }
+    .trial-trust-wrap {
+      position: relative;
+      margin-bottom: 44px;
+    }
+    .trial-trust-wrap::before {
+      content: '';
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%,-50%);
+      width: 420px; height: 90px;
+      background: radial-gradient(ellipse at center, rgba(240,224,48,0.07) 0%, transparent 72%);
+      pointer-events: none;
+      animation: pulseHalo 3.6s ease-in-out infinite;
+    }
+    .trial-trust {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .trust-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(240,224,48,0.05);
+      border: 1px solid rgba(240,224,48,0.16);
+      border-radius: 980px;
+      padding: 10px 18px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      cursor: default;
+      transition: background 0.22s ease, border-color 0.22s ease, color 0.22s ease, transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.22s ease;
+      opacity: 0;
+    }
+    .trust-chip:nth-child(1) { animation: chipReveal 0.55s cubic-bezier(0.22,1,0.36,1) 0.08s forwards; }
+    .trust-chip:nth-child(2) { animation: chipReveal 0.55s cubic-bezier(0.22,1,0.36,1) 0.2s  forwards; }
+    .trust-chip:nth-child(3) { animation: chipReveal 0.55s cubic-bezier(0.22,1,0.36,1) 0.32s forwards; }
+    .trust-chip:hover {
+      background: rgba(240,224,48,0.11);
+      border-color: rgba(240,224,48,0.45);
+      color: rgba(255,255,255,0.9);
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 6px 20px rgba(240,224,48,0.12);
+    }
+    .trust-chip:active { transform: scale(0.97); }
+    .trust-check {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      background: var(--yellow);
+      border-radius: 50%;
+      flex-shrink: 0;
+      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .trust-chip:hover .trust-check { transform: scale(1.25); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 32px 40px;
+    }
+    .footer-inner {
+      max-width: 980px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: -0.03em;
+      display: flex;
+      align-items: center;
+    }
+    .footer-dot {
+      display: inline-block;
+      width: 6px; height: 6px;
+      background: var(--yellow);
+      border-radius: 50%;
+      margin-left: 1px;
+      position: relative; top: 1px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .footer-links a {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: rgba(255,255,255,0.7); }
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(255,255,255,0.18);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0 24px; }
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+      .hero { padding: 100px 24px 60px; }
+      .hero-inner { flex-direction: column; gap: 48px; text-align: center; }
+      .hero-text { text-align: center; }
+      .hero-sub { margin-left: auto; margin-right: auto; }
+      .hero-ctas { justify-content: center; }
+      .hero-watermark { display: none; }
+      .ingr-groups { grid-template-columns: 1fr; }
+      .trial-perks { gap: 36px; }
+      footer { padding: 28px 24px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 480px) {
+      .benefits-grid { grid-template-columns: 1fr; }
+      .hero-product-img { width: 80px; }
+    }
+
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--yellow);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    /* ── NAV PURCHASE BUTTON ── */
+    .nav-purchase {
+      background: transparent;
+      color: rgba(255,255,255,0.75);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 7px 18px;
+      border-radius: 980px;
+      border: 1px solid rgba(255,255,255,0.2);
+      cursor: pointer;
+      letter-spacing: -0.01em;
+      transition: border-color 0.2s, color 0.2s;
+      white-space: nowrap;
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+    .nav-purchase:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+
+    /* ── SIGNUP MODAL ── */
+    @keyframes stepIn {
+      from { opacity: 0; transform: translateX(12px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 400;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.22s ease;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal {
+      background: #fff;
+      border-radius: 22px;
+      padding: 36px 36px 32px;
+      max-width: 420px;
+      width: 100%;
+      position: relative;
+      transform: translateY(16px) scale(0.98);
+      transition: transform 0.26s cubic-bezier(0.22,1,0.36,1);
+    }
+    .modal-overlay.open .modal { transform: translateY(0) scale(1); }
+    .modal-close {
+      position: absolute;
+      top: 14px; right: 14px;
+      width: 30px; height: 30px;
+      background: rgba(26,26,26,0.06);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 13px;
+      color: var(--near-black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.18s;
+    }
+    .modal-close:hover { background: rgba(26,26,26,0.12); }
+    /* Step progress bar */
+    .modal-progress {
+      display: flex;
+      gap: 5px;
+      margin-bottom: 26px;
+    }
+    .modal-prog-bar {
+      height: 3px;
+      flex: 1;
+      background: rgba(26,26,26,0.08);
+      border-radius: 2px;
+      transition: background 0.35s ease;
+    }
+    .modal-prog-bar.done { background: var(--near-black); }
+    .modal-prog-bar.active { background: var(--yellow); }
+    /* Panel show/hide */
+    .modal-panel { display: none; }
+    .modal-panel.active { display: block; animation: stepIn 0.3s cubic-bezier(0.22,1,0.36,1); }
+    /* Eyebrow + title */
+    .modal-eyebrow {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 7px;
+    }
+    .modal-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--near-black);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+    /* Form fields */
+    .modal-field { margin-bottom: 12px; }
+    .modal-field label {
+      display: block;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 5px;
+    }
+    .modal-field input {
+      width: 100%;
+      padding: 11px 13px;
+      border: 1.5px solid rgba(26,26,26,0.11);
+      border-radius: 10px;
+      font-size: 14px;
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--near-black);
+      background: #fafafa;
+      outline: none;
+      transition: border-color 0.18s, background 0.18s;
+      letter-spacing: -0.01em;
+    }
+    .modal-field input:focus {
+      border-color: var(--near-black);
+      background: #fff;
+    }
+    .modal-field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    /* Guarantee callout */
+    .modal-guarantee {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: rgba(240,224,48,0.08);
+      border: 1px solid rgba(240,224,48,0.24);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 18px;
+    }
+    .modal-guarantee-icon { flex-shrink: 0; margin-top: 1px; }
+    .modal-guarantee-text {
+      font-size: 12px;
+      color: rgba(26,26,26,0.58);
+      line-height: 1.65;
+      letter-spacing: -0.01em;
+    }
+    /* Actions */
+    .modal-actions { margin-top: 18px; display: flex; flex-direction: column; gap: 0; }
+    .modal-btn-primary {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      padding: 14px 24px;
+      background: var(--yellow);
+      color: var(--black);
+      border: none;
+      border-radius: 980px;
+      cursor: pointer;
+      box-shadow: 0 2px 16px rgba(240,224,48,0.3);
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+    .modal-btn-primary:hover {
+      background: var(--yellow-hover);
+      box-shadow: 0 6px 24px rgba(240,224,48,0.38);
+      transform: translateY(-1px);
+    }
+    .modal-btn-primary:active { transform: scale(0.97); }
+    .modal-btn-cancel {
+      display: block;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 13px;
+      color: var(--text-muted);
+      padding: 10px 0 2px;
+      text-align: center;
+      width: 100%;
+      transition: color 0.18s;
+      letter-spacing: -0.01em;
+    }
+    .modal-btn-cancel:hover { color: var(--text); }
+    .modal-btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 12px;
+      color: var(--text-dim);
+      padding: 0 0 16px;
+      transition: color 0.18s;
+      letter-spacing: -0.01em;
+    }
+    .modal-btn-back:hover { color: var(--text); }
+
+    /* ── HERO PRODUCT GLOW ── */
+    .hero-product-img { width: 126px; }
+    .hero-visual {
+      position: relative;
+    }
+    .hero-visual::before {
+      content: '';
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: 320px; height: 320px;
+      background: radial-gradient(ellipse at center, rgba(240,224,48,0.1) 0%, transparent 62%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-product-wrap { position: relative; z-index: 1; }
+
+    /* ── INGREDIENT BENEFIT LABELS ── */
+    .ingr-item { justify-content: space-between; }
+    .ingr-name { flex: 1; }
+    .ingr-benefit {
+      font-size: 11px;
+      font-weight: 500;
+      color: rgba(240,224,48,0.48);
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+
+    /* ── SOCIAL PROOF ── */
+    .social-section { background: #fff; padding: 90px 24px; }
+    .social-rating-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 52px;
+    }
+    .social-stars { display: flex; gap: 3px; align-items: center; }
+    .social-star { width: 16px; height: 16px; color: var(--yellow); fill: var(--yellow); }
+    .social-rating-text {
+      font-size: 14px;
+      color: var(--text-muted);
+      letter-spacing: -0.01em;
+      font-weight: 500;
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 64px;
+    }
+    .testimonial-card {
+      background: var(--cream);
+      border-radius: 16px;
+      padding: 28px 24px;
+      border: 1px solid rgba(26,26,26,0.06);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(26,26,26,0.08);
+    }
+    .t-stars { display: flex; gap: 2px; margin-bottom: 14px; }
+    .t-star { width: 13px; height: 13px; color: var(--yellow); fill: var(--yellow); }
+    .t-quote {
+      font-size: 14px;
+      line-height: 1.68;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      margin-bottom: 22px;
+      font-style: italic;
+    }
+    .t-author { display: flex; align-items: center; gap: 10px; }
+    .t-avatar {
+      width: 36px; height: 36px;
+      background: var(--yellow);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700;
+      color: var(--black);
+      flex-shrink: 0; letter-spacing: 0.01em;
+    }
+    .t-name {
+      font-size: 13px; font-weight: 600;
+      color: var(--near-black); letter-spacing: -0.01em;
+    }
+    .t-role { font-size: 11px; color: var(--text-dim); margin-top: 1px; }
+    .social-stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 72px;
+      flex-wrap: wrap;
+    }
+    .social-stat { text-align: center; }
+    .social-stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 44px; font-weight: 700;
+      color: var(--near-black);
+      letter-spacing: -0.03em; line-height: 1;
+      margin-bottom: 7px;
+    }
+    .social-stat-label {
+      font-size: 12px; color: var(--text-muted); letter-spacing: -0.01em;
+    }
+
+    /* ── EMAIL CAPTURE ── */
+    .email-capture { max-width: 400px; margin: 0 auto 36px; }
+    .email-capture-label {
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+    }
+    .email-form { display: flex; gap: 8px; }
+    .email-input {
+      flex: 1; min-width: 0;
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.11);
+      border-radius: 980px;
+      font-size: 13px; color: #fff;
+      font-family: 'Inter', system-ui, sans-serif;
+      outline: none; letter-spacing: -0.01em;
+      transition: border-color 0.18s, background 0.18s;
+    }
+    .email-input::placeholder { color: rgba(255,255,255,0.28); }
+    .email-input:focus { border-color: rgba(240,224,48,0.5); background: rgba(255,255,255,0.1); }
+    .email-btn {
+      padding: 12px 22px;
+      background: var(--yellow); color: var(--black);
+      border: none; border-radius: 980px;
+      font-size: 13px; font-weight: 600; letter-spacing: -0.01em;
+      cursor: pointer; white-space: nowrap; flex-shrink: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .email-btn:hover { background: var(--yellow-hover); transform: translateY(-1px); }
+    .email-btn:active { transform: scale(0.97); }
+
+    /* ── FOOTER TRUST ── */
+    .footer-trust {
+      display: flex; align-items: center; justify-content: center;
+      gap: 28px; flex-wrap: wrap;
+      padding-bottom: 20px; margin-bottom: 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-trust-item {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 12px; color: rgba(255,255,255,0.38); letter-spacing: -0.01em;
+    }
+    .footer-trust-icon { color: var(--yellow); opacity: 0.8; }
+    .footer-community-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: -0.01em;
+      padding: 0;
+      transition: color 0.2s;
+    }
+    .footer-community-btn:hover { color: rgba(255,255,255,0.7); }
+
+    /* ── COMMUNITY MODAL ── */
+    .community-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 400;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.22s ease;
+    }
+    .community-overlay.open { opacity: 1; pointer-events: all; }
+    .community-modal {
+      background: #fff;
+      border-radius: 22px;
+      padding: 40px 36px 34px;
+      max-width: 400px;
+      width: 100%;
+      position: relative;
+      transform: translateY(16px) scale(0.98);
+      transition: transform 0.26s cubic-bezier(0.22,1,0.36,1);
+      text-align: center;
+    }
+    .community-overlay.open .community-modal { transform: translateY(0) scale(1); }
+    .community-modal-close {
+      position: absolute;
+      top: 14px; right: 14px;
+      width: 30px; height: 30px;
+      background: rgba(26,26,26,0.06);
+      border: none; border-radius: 50%;
+      cursor: pointer; font-size: 13px;
+      color: var(--near-black);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.18s;
+    }
+    .community-modal-close:hover { background: rgba(26,26,26,0.12); }
+    .community-icon {
+      width: 52px; height: 52px;
+      background: var(--yellow);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .community-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 24px; font-weight: 700;
+      color: var(--near-black);
+      letter-spacing: -0.02em; line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .community-sub {
+      font-size: 14px; color: var(--text-muted);
+      letter-spacing: -0.01em; line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .community-field input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid rgba(26,26,26,0.11);
+      border-radius: 10px;
+      font-size: 14px;
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--near-black);
+      background: #fafafa;
+      outline: none;
+      letter-spacing: -0.01em;
+      transition: border-color 0.18s, background 0.18s;
+      margin-bottom: 12px;
+      text-align: left;
+    }
+    .community-field input:focus { border-color: var(--near-black); background: #fff; }
+    .community-submit {
+      width: 100%;
+      padding: 14px;
+      background: var(--yellow); color: var(--black);
+      border: none; border-radius: 980px;
+      font-size: 15px; font-weight: 600;
+      font-family: 'Inter', system-ui, sans-serif;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      box-shadow: 0 2px 16px rgba(240,224,48,0.3);
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+    .community-submit:hover {
+      background: var(--yellow-hover);
+      box-shadow: 0 6px 24px rgba(240,224,48,0.38);
+      transform: translateY(-1px);
+    }
+    .community-submit:active { transform: scale(0.97); }
+    .community-confirm {
+      display: none;
+      padding: 16px 0 4px;
+    }
+    .community-confirm-icon {
+      width: 48px; height: 48px;
+      background: rgba(240,224,48,0.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .community-confirm-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 22px; font-weight: 700;
+      color: var(--near-black); letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+    .community-confirm-text {
+      font-size: 14px; color: var(--text-muted);
+      letter-spacing: -0.01em; line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .social-stats-row { gap: 36px; }
+      .email-form { flex-direction: column; }
+    }
+
+    /* ── PRE-TRIAL LOGO ── */
+    .pre-trial-logo-link {
+      display: block;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 52px;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: -0.03em;
+      display: inline-flex;
+      align-items: center;
+    }
+    .pre-trial-dot {
+      display: inline-block;
+      width: 14px; height: 14px;
+      background: var(--yellow);
+      border-radius: 50%;
+      margin-left: 3px;
+      position: relative; top: 2px;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav>
+    <a href="#" class="nav-logo">newt<span class="nav-logo-dot"></span></a>
+    <ul class="nav-links">
+      <li><a href="#benefits">Benefits</a></li>
+      <li><a href="product.html">Product</a></li>
+      <li><a href="#ingredients">Ingredients</a></li>
+      <li><a href="#trial">Free Trial</a></li>
+    </ul>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <button class="nav-purchase" data-purchase>Purchase</button>
+      <a href="#trial" class="nav-cta">Start Free Trial</a>
+    </div>
+    <button class="nav-hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <img src="brand_assets/lizard-logo.png" class="hero-watermark" alt="" aria-hidden="true">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <p class="hero-eyebrow">Nootropics &nbsp;·&nbsp; Lemon Lime &nbsp;·&nbsp; 8.5g Per Serving</p>
+        <h1 class="hero-headline">Fix Your<br><em>Focus.</em></h1>
+        <p class="hero-sub">A premium cognitive boost. Enhancing mental clarity and all day performance.</p>
+        <div class="hero-ctas">
+          <a href="#" class="btn-fill btn-fill-yellow" data-trial>Start Your Free Trial</a>
+          <a href="#benefits" class="btn-ghost">Learn More</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-product-wrap">
+          <img
+            src="brand_assets/SimpleSachet.png"
+            alt="Newt Nootropics Lemon Lime stick pack"
+            class="hero-product-img"
+          >
+          <span class="hero-badge">Lemon Lime</span>
+          <p style="font-size:10px;font-weight:500;color:var(--text-dim);letter-spacing:0.06em;text-transform:uppercase;text-align:center;margin-top:10px;white-space:nowrap;">More flavors coming soon</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WORDMARK STRIP ── -->
+  <div class="logo-strip" aria-hidden="true">
+    <div class="logo-strip-track">
+      <!-- 20 repetitions to fill any viewport -->
+      <span class="logo-strip-item"><span class="logo-strip-word">newt</span><span class="logo-strip-dot"></span></span>
+      <span class="logo-strip-item"><span class="logo-strip-word">newt</span><span class="logo-strip-dot"></span></span>
+      <span class="logo-strip-item"><span class="logo-strip-word">newt</span><span class="logo-strip-dot"></span></span>
+      <span class="logo-strip-item"><span class="logo-strip-word">newt</span><span class="logo-strip-dot"></span></span>
+      <span class="logo-strip-item"><span class="logo-strip-word">newt</span><span class="logo-strip-dot"></span></span>
+      <span class="logo-strip-item"><span class="logo-strip-word">newt</span><span class="logo-strip-dot"></span></span>
+      <span class="logo-strip-item"><span class="logo-strip-word">newt</span><span class="logo-strip-dot"></span></span>
+      <span class="logo-strip-item"><span class="logo-strip-word">newt</span><span class="logo-strip-dot"></span></span>
+      <span class="logo-strip-item"><span class="logo-strip-word">newt</span><span class="logo-strip-dot"></span></span>
+      <span class="logo-strip-item"><span class="logo-strip-word">newt</span><span class="logo-strip-dot"></span></span>
+      <span class="logo-strip-item"><span class="logo-strip-word">newt</span><span class="logo-strip-dot"></span></span>
+      <span class="logo-strip-item"><span class="logo-strip-word">newt</span><span class="logo-strip-dot"></span></span>
+      <span class="logo-strip-item"><span class="logo-strip-word">newt</span><span class="logo-strip-dot"></span></span>
+      <span class="logo-strip-item"><span class="logo-strip-word">newt</span><span class="logo-strip-dot"></span></span>
+      <span class="logo-strip-item"><span class="logo-strip-word">newt</span><span class="logo-strip-dot"></span></span>
+      <span class="logo-strip-item"><span class="logo-strip-word">newt</span><span class="logo-strip-dot"></span></span>
+      <span class="logo-strip-item"><span class="logo-strip-word">newt</span><span class="logo-strip-dot"></span></span>
+      <span class="logo-strip-item"><span class="logo-strip-word">newt</span><span class="logo-strip-dot"></span></span>
+      <span class="logo-strip-item"><span class="logo-strip-word">newt</span><span class="logo-strip-dot"></span></span>
+      <span class="logo-strip-item"><span class="logo-strip-word">newt</span><span class="logo-strip-dot"></span></span>
+    </div>
+  </div>
+
+  <!-- ── BENEFITS ── -->
+  <section id="benefits" class="s-cream">
+    <div class="container">
+      <p class="section-label section-label-dark">What Newt Does</p>
+      <h2 class="section-heading section-heading-dark">Built for your<br>best hours.</h2>
+      <div class="benefits-grid">
+
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <!-- Lightning bolt -->
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13 2L4 13.5H11L10 22L20 10.5H13L13 2Z"/>
+            </svg>
+          </div>
+          <p class="benefit-title">Clean Energy</p>
+          <p class="benefit-ingredient">Caffeine · 200mg</p>
+          <p class="benefit-desc">Fast-onset energy, no crash.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <!-- Target / crosshair -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <circle cx="12" cy="12" r="8"/>
+              <circle cx="12" cy="12" r="3"/>
+              <line x1="12" y1="4" x2="12" y2="7"/>
+              <line x1="12" y1="17" x2="12" y2="20"/>
+              <line x1="4" y1="12" x2="7" y2="12"/>
+              <line x1="17" y1="12" x2="20" y2="12"/>
+            </svg>
+          </div>
+          <p class="benefit-title">All-Day Focus</p>
+          <p class="benefit-ingredient">L-Tyrosine · 800mg</p>
+          <p class="benefit-desc">Sustains drive and mental stamina.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <!-- Wave / calm -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M2 12 C5 7, 8 17, 12 12 C16 7, 19 17, 22 12"/>
+            </svg>
+          </div>
+          <p class="benefit-title">Mental Clarity</p>
+          <p class="benefit-ingredient">L-Theanine · 150mg</p>
+          <p class="benefit-desc">Jitter-free calm that extends focus.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <!-- Connected nodes / cognition -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="4.5" r="2"/>
+              <circle cx="4.5" cy="19" r="2"/>
+              <circle cx="19.5" cy="19" r="2"/>
+              <line x1="12" y1="6.5" x2="5.5" y2="17"/>
+              <line x1="12" y1="6.5" x2="18.5" y2="17"/>
+              <line x1="6.5" y1="19" x2="17.5" y2="19"/>
+            </svg>
+          </div>
+          <p class="benefit-title">Cognitive Function</p>
+          <p class="benefit-ingredient">Alpha GPC · 600mg</p>
+          <p class="benefit-desc">Sharper memory and decision-making.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SOCIAL PROOF ── -->
+  <section class="social-section">
+    <div class="container">
+      <!-- Rating bar -->
+      <div class="social-rating-row">
+        <div class="social-stars">
+          <svg class="social-star" viewBox="0 0 16 16"><path d="M8 1l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 10.7l-3.8 2.1.7-4.3-3.1-3 4.3-.6z"/></svg>
+          <svg class="social-star" viewBox="0 0 16 16"><path d="M8 1l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 10.7l-3.8 2.1.7-4.3-3.1-3 4.3-.6z"/></svg>
+          <svg class="social-star" viewBox="0 0 16 16"><path d="M8 1l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 10.7l-3.8 2.1.7-4.3-3.1-3 4.3-.6z"/></svg>
+          <svg class="social-star" viewBox="0 0 16 16"><path d="M8 1l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 10.7l-3.8 2.1.7-4.3-3.1-3 4.3-.6z"/></svg>
+          <svg class="social-star" viewBox="0 0 16 16"><path d="M8 1l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 10.7l-3.8 2.1.7-4.3-3.1-3 4.3-.6z"/></svg>
+        </div>
+        <p class="social-rating-text">4.9 / 5 &nbsp;·&nbsp; 1,200+ verified reviews</p>
+      </div>
+
+      <!-- Testimonials -->
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="t-stars">
+            <svg class="t-star" viewBox="0 0 16 16"><path d="M8 1l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 10.7l-3.8 2.1.7-4.3-3.1-3 4.3-.6z"/></svg>
+            <svg class="t-star" viewBox="0 0 16 16"><path d="M8 1l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 10.7l-3.8 2.1.7-4.3-3.1-3 4.3-.6z"/></svg>
+            <svg class="t-star" viewBox="0 0 16 16"><path d="M8 1l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 10.7l-3.8 2.1.7-4.3-3.1-3 4.3-.6z"/></svg>
+            <svg class="t-star" viewBox="0 0 16 16"><path d="M8 1l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 10.7l-3.8 2.1.7-4.3-3.1-3 4.3-.6z"/></svg>
+            <svg class="t-star" viewBox="0 0 16 16"><path d="M8 1l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 10.7l-3.8 2.1.7-4.3-3.1-3 4.3-.6z"/></svg>
+          </div>
+          <p class="t-quote">"Noticeable difference within 20 minutes. My best mornings start with Newt."</p>
+          <div class="t-author">
+            <div class="t-avatar">JM</div>
+            <div><p class="t-name">Jordan M.</p><p class="t-role">Software Engineer</p></div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="t-stars">
+            <svg class="t-star" viewBox="0 0 16 16"><path d="M8 1l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 10.7l-3.8 2.1.7-4.3-3.1-3 4.3-.6z"/></svg>
+            <svg class="t-star" viewBox="0 0 16 16"><path d="M8 1l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 10.7l-3.8 2.1.7-4.3-3.1-3 4.3-.6z"/></svg>
+            <svg class="t-star" viewBox="0 0 16 16"><path d="M8 1l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 10.7l-3.8 2.1.7-4.3-3.1-3 4.3-.6z"/></svg>
+            <svg class="t-star" viewBox="0 0 16 16"><path d="M8 1l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 10.7l-3.8 2.1.7-4.3-3.1-3 4.3-.6z"/></svg>
+            <svg class="t-star" viewBox="0 0 16 16"><path d="M8 1l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 10.7l-3.8 2.1.7-4.3-3.1-3 4.3-.6z"/></svg>
+          </div>
+          <p class="t-quote">"Clean energy all day — zero jitters. I've replaced my second coffee with Newt."</p>
+          <div class="t-author">
+            <div class="t-avatar">SR</div>
+            <div><p class="t-name">Sarah R.</p><p class="t-role">Product Designer</p></div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="t-stars">
+            <svg class="t-star" viewBox="0 0 16 16"><path d="M8 1l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 10.7l-3.8 2.1.7-4.3-3.1-3 4.3-.6z"/></svg>
+            <svg class="t-star" viewBox="0 0 16 16"><path d="M8 1l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 10.7l-3.8 2.1.7-4.3-3.1-3 4.3-.6z"/></svg>
+            <svg class="t-star" viewBox="0 0 16 16"><path d="M8 1l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 10.7l-3.8 2.1.7-4.3-3.1-3 4.3-.6z"/></svg>
+            <svg class="t-star" viewBox="0 0 16 16"><path d="M8 1l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 10.7l-3.8 2.1.7-4.3-3.1-3 4.3-.6z"/></svg>
+            <svg class="t-star" viewBox="0 0 16 16"><path d="M8 1l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 10.7l-3.8 2.1.7-4.3-3.1-3 4.3-.6z"/></svg>
+          </div>
+          <p class="t-quote">"The focus is real. I get more done by noon than I used to in an entire day."</p>
+          <div class="t-author">
+            <div class="t-avatar">AK</div>
+            <div><p class="t-name">Alex K.</p><p class="t-role">Entrepreneur</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats row -->
+      <div class="social-stats-row">
+        <div class="social-stat">
+          <p class="social-stat-num">40%</p>
+          <p class="social-stat-label">Reported focus improvement</p>
+        </div>
+        <div class="social-stat">
+          <p class="social-stat-num">6h+</p>
+          <p class="social-stat-label">Average sustained energy</p>
+        </div>
+        <div class="social-stat">
+          <p class="social-stat-num">93%</p>
+          <p class="social-stat-label">Would recommend to a friend</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── INGREDIENTS ── -->
+  <section id="ingredients" class="s-dark">
+    <div class="container">
+      <p class="section-label section-label-light">What's Inside</p>
+      <h2 class="section-heading section-heading-light">Clinically dosed.<br>Nothing hidden.</h2>
+      <div class="ingr-groups">
+        <div class="ingr-group">
+          <p class="ingr-group-num">01</p>
+          <p class="ingr-group-title">Energy &amp;<br>Focus</p>
+          <div class="ingr-list">
+            <span class="ingr-item"><span class="ingr-name">Caffeine Anhydrous</span><span class="ingr-benefit">Clean Energy</span></span>
+            <span class="ingr-item"><span class="ingr-name">L-Tyrosine</span><span class="ingr-benefit">Sharp Drive</span></span>
+            <span class="ingr-item"><span class="ingr-name">Sodium Citrate</span><span class="ingr-benefit">Smooth Absorption</span></span>
+          </div>
+        </div>
+        <div class="ingr-group">
+          <p class="ingr-group-num">02</p>
+          <p class="ingr-group-title">Calm<br>Clarity</p>
+          <div class="ingr-list">
+            <span class="ingr-item"><span class="ingr-name">L-Theanine</span><span class="ingr-benefit">Calm Focus</span></span>
+            <span class="ingr-item"><span class="ingr-name">Acacia Fiber</span><span class="ingr-benefit">Gut Health</span></span>
+            <span class="ingr-item"><span class="ingr-name">Allulose</span><span class="ingr-benefit">No Sugar</span></span>
+          </div>
+        </div>
+        <div class="ingr-group">
+          <p class="ingr-group-num">03</p>
+          <p class="ingr-group-title">Cognitive<br>Function</p>
+          <div class="ingr-list">
+            <span class="ingr-item"><span class="ingr-name">Alpha GPC</span><span class="ingr-benefit">Sharp Memory</span></span>
+            <span class="ingr-item"><span class="ingr-name">Lemon Powder</span><span class="ingr-benefit">Natural Flavor</span></span>
+            <span class="ingr-item"><span class="ingr-name">Silicon Dioxide</span><span class="ingr-benefit">Flow Agent</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TRIAL ── -->
+  <section id="trial" class="trial-section">
+    <div class="container" style="position:relative;z-index:1;text-align:center;">
+
+      <!-- 1. Logo -->
+      <a href="#" class="pre-trial-logo-link" style="margin-bottom:40px;">newt<span class="pre-trial-dot"></span></a>
+
+      <!-- 2. No Risk Offer -->
+      <div style="margin-bottom:28px;">
+        <span class="trial-badge">✦ &nbsp;No Risk Offer</span>
+      </div>
+
+      <!-- 3. Email capture -->
+      <div class="email-capture">
+        <p class="email-capture-label">New flavors, research & exclusive offers</p>
+        <div class="email-form">
+          <input type="email" class="email-input" placeholder="your@email.com">
+          <button class="email-btn">Notify Me</button>
+        </div>
+      </div>
+
+      <!-- 4. Trust chips -->
+      <div class="trial-trust-wrap">
+        <div class="trial-trust">
+          <div class="trust-chip">
+            <span class="trust-check"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3.5 6L8 1" stroke="#0A0A0A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            7-Day Free Trial
+          </div>
+          <div class="trust-chip">
+            <span class="trust-check"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3.5 6L8 1" stroke="#0A0A0A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            Free Shipping
+          </div>
+          <div class="trust-chip">
+            <span class="trust-check"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3.5 6L8 1" stroke="#0A0A0A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            No Commitment
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-fill btn-fill-yellow" data-trial style="font-size:16px;padding:15px 52px;border:none;cursor:pointer;font-family:'Inter',system-ui,sans-serif;">Start Your Free Trial</button>
+      <p class="trial-disclaimer">After trial, auto-enrolls in a 30-day subscription. Cancel anytime.</p>
+    </div>
+  </section>
+
+  <!-- ── COMMUNITY MODAL ── -->
+  <div class="community-overlay" id="communityModal" role="dialog" aria-modal="true" aria-labelledby="commTitle">
+    <div class="community-modal">
+      <button class="community-modal-close" id="communityClose" aria-label="Close">✕</button>
+      <!-- Form view -->
+      <div id="communityForm">
+        <div class="community-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3 class="community-title" id="commTitle">Join our community.<br>Get 4 days free.</h3>
+        <p class="community-sub">Enter your email and we'll send your 4-day free trial details instantly.</p>
+        <div class="community-field">
+          <input type="email" id="communityEmail" placeholder="your@email.com" autocomplete="email">
+        </div>
+        <button class="community-submit" id="communitySubmit">Claim Free Trial</button>
+      </div>
+      <!-- Confirmation view -->
+      <div class="community-confirm" id="communityConfirm">
+        <div class="community-confirm-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 11l5 5L18 6" stroke="#856f00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <p class="community-confirm-title">You're in!</p>
+        <p class="community-confirm-text">Check your email for your free trial details.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SIGNUP MODAL ── -->
+  <div class="modal-overlay" id="signupModal" role="dialog" aria-modal="true" aria-labelledby="s1Title">
+    <div class="modal">
+      <button class="modal-close" id="signupClose" aria-label="Close">✕</button>
+
+      <!-- Progress bars -->
+      <div class="modal-progress">
+        <div class="modal-prog-bar active" id="prog1"></div>
+        <div class="modal-prog-bar" id="prog2"></div>
+      </div>
+
+      <!-- Step 1: Identity -->
+      <div class="modal-panel active" id="signupStep1">
+        <p class="modal-eyebrow">Free Trial &nbsp;·&nbsp; Step 1 of 2</p>
+        <h3 class="modal-title" id="s1Title">Let's get<br>started.</h3>
+        <div class="modal-field">
+          <label for="s1Name">Name</label>
+          <input type="text" id="s1Name" placeholder="Your full name" autocomplete="name">
+        </div>
+        <div class="modal-field">
+          <label for="s1Email">Email</label>
+          <input type="email" id="s1Email" placeholder="you@example.com" autocomplete="email">
+        </div>
+        <div class="modal-actions">
+          <button class="modal-btn-primary" id="toStep2">Continue</button>
+          <button class="modal-btn-cancel" id="cancelStep1">Cancel</button>
+        </div>
+      </div>
+
+      <!-- Step 2: Payment -->
+      <div class="modal-panel" id="signupStep2">
+        <button class="modal-btn-back" id="toStep1">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 11L5 7L9 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Back
+        </button>
+        <p class="modal-eyebrow">Free Trial &nbsp;·&nbsp; Step 2 of 2</p>
+        <h3 class="modal-title">Payment<br>details.</h3>
+        <div class="modal-guarantee">
+          <span class="modal-guarantee-icon">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 1.5L2.5 4.5V9C2.5 12.59 5.35 15.93 9 16.5C12.65 15.93 15.5 12.59 15.5 9V4.5L9 1.5Z" fill="rgba(240,224,48,0.3)" stroke="#b8a800" stroke-width="1.3" stroke-linejoin="round"/><path d="M6.5 9L8.25 10.75L11.5 7.5" stroke="#856f00" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <p class="modal-guarantee-text">You won't be charged until after your 7-day free trial. Cancel anytime before day 7 with no charges.</p>
+        </div>
+        <div class="modal-field">
+          <label for="s2Card">Card Number</label>
+          <input type="text" id="s2Card" placeholder="1234  5678  9012  3456" maxlength="19" autocomplete="cc-number" inputmode="numeric">
+        </div>
+        <div class="modal-field-row">
+          <div class="modal-field">
+            <label for="s2Exp">Expiry</label>
+            <input type="text" id="s2Exp" placeholder="MM / YY" maxlength="7" autocomplete="cc-exp" inputmode="numeric">
+          </div>
+          <div class="modal-field">
+            <label for="s2Cvv">CVV</label>
+            <input type="text" id="s2Cvv" placeholder="···" maxlength="4" autocomplete="cc-csc" inputmode="numeric">
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button class="modal-btn-primary" id="submitSignup">Start Your Free Trial</button>
+          <button class="modal-btn-cancel" id="cancelStep2">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div style="max-width:980px;margin:0 auto;">
+      <!-- Trust bar -->
+      <div class="footer-trust">
+        <div class="footer-trust-item">
+          <span class="footer-trust-icon">
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 1L2 3.5V7C2 10.09 4.5 12.93 7.5 13.5C10.5 12.93 13 10.09 13 7V3.5L7.5 1Z" fill="rgba(240,224,48,0.18)" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M5.5 7.5L6.8 8.8L9.5 6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          30-Day Money-Back Guarantee
+        </div>
+        <div class="footer-trust-item">
+          <span class="footer-trust-icon">
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 1l1.6 3.3 3.6.5-2.6 2.5.6 3.6-3.2-1.7-3.2 1.7.6-3.6-2.6-2.5 3.6-.5z" fill="rgba(240,224,48,0.18)" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+          </span>
+          Trusted by 5,000+ users
+        </div>
+        <div class="footer-trust-item">
+          <span class="footer-trust-icon">
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><rect x="2" y="2" width="11" height="11" rx="2.5" fill="rgba(240,224,48,0.18)" stroke="currentColor" stroke-width="1.2"/><path d="M5 7.5L6.5 9L10 6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          Clinically Dosed Ingredients
+        </div>
+      </div>
+    </div>
+    <div class="footer-inner">
+      <a href="#" class="footer-logo">newt<span class="footer-dot"></span></a>
+      <div class="footer-links">
+        <a href="#benefits">Benefits</a>
+        <a href="#ingredients">Ingredients</a>
+        <a href="#trial">Free Trial</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms</a>
+        <button class="footer-community-btn" id="openCommunity">Join Community</button>
+      </div>
+      <p class="footer-copy">© 2026 Newt Nootropics</p>
+    </div>
+  </footer>
+
+  <script>
+    const signupModal = document.getElementById('signupModal');
+    const step1Panel = document.getElementById('signupStep1');
+    const step2Panel = document.getElementById('signupStep2');
+    const prog1 = document.getElementById('prog1');
+    const prog2 = document.getElementById('prog2');
+
+    function showStep(n) {
+      step1Panel.classList.toggle('active', n === 1);
+      step2Panel.classList.toggle('active', n === 2);
+      prog1.className = 'modal-prog-bar ' + (n === 1 ? 'active' : 'done');
+      prog2.className = 'modal-prog-bar ' + (n === 2 ? 'active' : '');
+    }
+
+    function openModal() {
+      showStep(1);
+      signupModal.classList.add('open');
+    }
+
+    function closeModal() {
+      signupModal.classList.remove('open');
+    }
+
+    // Open triggers
+    document.querySelectorAll('[data-trial], [data-purchase]').forEach(el => {
+      el.addEventListener('click', e => { e.preventDefault(); openModal(); });
+    });
+
+    // Navigation
+    document.getElementById('toStep2').addEventListener('click', () => showStep(2));
+    document.getElementById('toStep1').addEventListener('click', () => showStep(1));
+    document.getElementById('cancelStep1').addEventListener('click', closeModal);
+    document.getElementById('cancelStep2').addEventListener('click', closeModal);
+    document.getElementById('signupClose').addEventListener('click', closeModal);
+    signupModal.addEventListener('click', e => { if (e.target === signupModal) closeModal(); });
+
+    // Community modal
+    const communityModal = document.getElementById('communityModal');
+    function openCommunity() {
+      document.getElementById('communityForm').style.display = 'block';
+      document.getElementById('communityConfirm').style.display = 'none';
+      document.getElementById('communityEmail').value = '';
+      communityModal.classList.add('open');
+    }
+    function closeCommunity() { communityModal.classList.remove('open'); }
+    document.getElementById('openCommunity').addEventListener('click', openCommunity);
+    document.getElementById('communityClose').addEventListener('click', closeCommunity);
+    communityModal.addEventListener('click', e => { if (e.target === communityModal) closeCommunity(); });
+    document.getElementById('communitySubmit').addEventListener('click', () => {
+      const email = document.getElementById('communityEmail').value.trim();
+      if (!email || !email.includes('@')) {
+        document.getElementById('communityEmail').focus();
+        return;
+      }
+      document.getElementById('communityForm').style.display = 'none';
+      document.getElementById('communityConfirm').style.display = 'block';
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') { closeModal(); closeCommunity(); }
+    });
+
+    // Card number formatting
+    document.getElementById('s2Card').addEventListener('input', e => {
+      let v = e.target.value.replace(/\D/g,'').slice(0,16);
+      e.target.value = v.replace(/(.{4})/g,'$1  ').trim();
+    });
+    document.getElementById('s2Exp').addEventListener('input', e => {
+      let v = e.target.value.replace(/\D/g,'').slice(0,4);
+      if (v.length > 2) v = v.slice(0,2) + ' / ' + v.slice(2);
+      e.target.value = v;
+    });
+  </script>
+</body>
+</html>
