@@ -672,6 +672,35 @@
       color: rgba(255,255,255,0.18);
     }
 
+    /* ── MOBILE MENU DROPDOWN ── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 52px; left: 0; right: 0;
+      z-index: 199;
+      background: rgba(10,10,10,0.96);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      flex-direction: column;
+      padding: 6px 0 10px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu-link {
+      font-size: 16px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.78);
+      text-decoration: none;
+      padding: 13px 24px;
+      letter-spacing: -0.01em;
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      transition: color 0.18s, background 0.18s;
+    }
+    .mobile-menu-link:hover { color: #fff; background: rgba(255,255,255,0.05); }
+    .mobile-menu-link:active { background: rgba(255,255,255,0.09); }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 860px) {
       .benefits-grid { grid-template-columns: repeat(2, 1fr); }
@@ -680,20 +709,29 @@
       nav { padding: 0 24px; }
       .nav-links, .nav-cta { display: none; }
       .nav-hamburger { display: flex; }
-      .hero { padding: 100px 24px 60px; }
-      .hero-inner { flex-direction: column; gap: 48px; text-align: center; }
+      .hero { padding: 90px 20px 56px; }
+      .hero-inner { flex-direction: column; gap: 40px; text-align: center; }
       .hero-text { text-align: center; }
       .hero-sub { margin-left: auto; margin-right: auto; }
       .hero-ctas { justify-content: center; }
+      .hero-ctas .btn-fill, .hero-ctas .btn-ghost { min-height: 48px; }
       .hero-watermark { display: none; }
+      .hero-product-img { width: 64px; }
+      .s-cream, .s-white, .s-dark { padding: 72px 20px; }
+      .social-section { padding: 72px 20px; }
+      .trial-section { padding: 80px 20px 72px; }
+      .section-heading { margin-bottom: 36px; }
       .ingr-groups { grid-template-columns: 1fr; }
       .trial-perks { gap: 36px; }
-      footer { padding: 28px 24px; }
+      footer { padding: 28px 20px; }
       .footer-inner { flex-direction: column; align-items: flex-start; }
+      .trust-chip { font-size: 12px; padding: 9px 14px; }
     }
     @media (max-width: 480px) {
       .benefits-grid { grid-template-columns: 1fr; }
-      .hero-product-img { width: 80px; }
+      .hero-product-img { width: 60px; }
+      .email-form { flex-direction: column; gap: 10px; }
+      .email-btn { width: 100%; justify-content: center; min-height: 48px; }
     }
 
     a:focus-visible, button:focus-visible {
@@ -702,24 +740,7 @@
       border-radius: 4px;
     }
 
-    /* ── NAV PURCHASE BUTTON ── */
-    .nav-purchase {
-      background: transparent;
-      color: rgba(255,255,255,0.75);
-      font-size: 13px;
-      font-weight: 500;
-      padding: 7px 18px;
-      border-radius: 980px;
-      border: 1px solid rgba(255,255,255,0.2);
-      cursor: pointer;
-      letter-spacing: -0.01em;
-      transition: border-color 0.2s, color 0.2s;
-      white-space: nowrap;
-      font-family: 'Inter', system-ui, sans-serif;
-    }
-    .nav-purchase:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
-
-    /* ── SIGNUP MODAL ── */
+/* ── SIGNUP MODAL ── */
     @keyframes stepIn {
       from { opacity: 0; transform: translateX(12px); }
       to   { opacity: 1; transform: translateX(0); }
@@ -1230,14 +1251,19 @@
       <li><a href="#ingredients">Ingredients</a></li>
       <li><a href="#trial">Free Trial</a></li>
     </ul>
-    <div style="display:flex;align-items:center;gap:10px;">
-      <button class="nav-purchase" data-purchase>Purchase</button>
-      <a href="#trial" class="nav-cta">Start Free Trial</a>
-    </div>
-    <button class="nav-hamburger" aria-label="Open menu">
+    <a href="#trial" class="nav-cta">Start Free Trial</a>
+    <button class="nav-hamburger" aria-label="Open menu" id="navHamburger">
       <span></span><span></span><span></span>
     </button>
   </nav>
+
+  <!-- ── MOBILE MENU ── -->
+  <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
+    <a href="#benefits" class="mobile-menu-link">Benefits</a>
+    <a href="product.html" class="mobile-menu-link">Product</a>
+    <a href="#ingredients" class="mobile-menu-link">Ingredients</a>
+    <a href="#trial" class="mobile-menu-link">Free Trial</a>
+  </div>
 
   <!-- ── HERO ── -->
   <section class="hero">
@@ -1677,7 +1703,7 @@
     }
 
     // Open triggers
-    document.querySelectorAll('[data-trial], [data-purchase]').forEach(el => {
+    document.querySelectorAll('[data-trial]').forEach(el => {
       el.addEventListener('click', e => { e.preventDefault(); openModal(); });
     });
 
@@ -1723,6 +1749,26 @@
       let v = e.target.value.replace(/\D/g,'').slice(0,4);
       if (v.length > 2) v = v.slice(0,2) + ' / ' + v.slice(2);
       e.target.value = v;
+    });
+
+    // Hamburger menu
+    const navHamburger = document.getElementById('navHamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    navHamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+
+    mobileMenu.querySelectorAll('.mobile-menu-link').forEach(link => {
+      link.addEventListener('click', () => { mobileMenu.classList.remove('open'); });
+    });
+
+    document.addEventListener('click', e => {
+      if (mobileMenu.classList.contains('open') &&
+          !mobileMenu.contains(e.target) &&
+          !navHamburger.contains(e.target)) {
+        mobileMenu.classList.remove('open');
+      }
     });
   </script>
 </body>

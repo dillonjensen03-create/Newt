@@ -6,6 +6,8 @@ import { fileURLToPath } from 'url';
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 const url = process.argv[2] || 'http://localhost:3000';
 const label = process.argv[3] ? `-${process.argv[3]}` : '';
+const vpWidth = parseInt(process.argv[4]) || 1440;
+const vpHeight = parseInt(process.argv[5]) || 900;
 const dir = join(__dirname, 'temporary screenshots');
 
 // auto-increment index
@@ -26,7 +28,7 @@ const outPath = join(dir, filename);
 
 const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox'] });
 const page = await browser.newPage();
-await page.setViewport({ width: 1440, height: 900 });
+await page.setViewport({ width: vpWidth, height: vpHeight });
 await page.goto(url, { waitUntil: 'networkidle0', timeout: 30000 });
 await page.screenshot({ path: outPath, fullPage: true });
 await browser.close();
