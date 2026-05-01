@@ -883,196 +883,60 @@
       border-radius: 4px;
     }
 
-/* ── SIGNUP MODAL ── */
-    @keyframes stepIn {
-      from { opacity: 0; transform: translateX(12px); }
-      to   { opacity: 1; transform: translateX(0); }
-    }
+/* ── SURVEY MODAL ── */
     .modal-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 400;
+      position: fixed; inset: 0; z-index: 400;
       background: rgba(0,0,0,0.55);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      opacity: 0;
-      pointer-events: none;
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px; opacity: 0; pointer-events: none;
       transition: opacity 0.22s ease;
     }
     .modal-overlay.open { opacity: 1; pointer-events: all; }
     .modal {
-      background: #fff;
-      border-radius: 22px;
-      padding: 36px 36px 32px;
-      max-width: 420px;
-      width: 100%;
-      position: relative;
+      background: #fff; border-radius: 22px;
+      padding: 40px 36px 36px; max-width: 400px; width: 100%;
+      position: relative; text-align: center;
       transform: translateY(16px) scale(0.98);
       transition: transform 0.26s cubic-bezier(0.22,1,0.36,1);
     }
     .modal-overlay.open .modal { transform: translateY(0) scale(1); }
     .modal-close {
-      position: absolute;
-      top: 14px; right: 14px;
+      position: absolute; top: 14px; right: 14px;
       width: 30px; height: 30px;
-      background: rgba(26,26,26,0.06);
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 13px;
-      color: var(--near-black);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: rgba(26,26,26,0.06); border: none; border-radius: 50%;
+      cursor: pointer; font-size: 13px; color: var(--near-black);
+      display: flex; align-items: center; justify-content: center;
       transition: background 0.18s;
     }
     .modal-close:hover { background: rgba(26,26,26,0.12); }
-    /* Step progress bar */
-    .modal-progress {
-      display: flex;
-      gap: 5px;
-      margin-bottom: 26px;
+    .modal-icon {
+      width: 52px; height: 52px; background: var(--yellow);
+      border-radius: 14px; display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
     }
-    .modal-prog-bar {
-      height: 3px;
-      flex: 1;
-      background: rgba(26,26,26,0.08);
-      border-radius: 2px;
-      transition: background 0.35s ease;
-    }
-    .modal-prog-bar.done { background: var(--near-black); }
-    .modal-prog-bar.active { background: var(--yellow); }
-    /* Panel show/hide */
-    .modal-panel { display: none; }
-    .modal-panel.active { display: block; animation: stepIn 0.3s cubic-bezier(0.22,1,0.36,1); }
-    /* Eyebrow + title */
-    .modal-eyebrow {
-      font-size: 10.5px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      margin-bottom: 7px;
-    }
-    .modal-title {
+    .modal-heading {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: 26px;
-      font-weight: 700;
-      color: var(--near-black);
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-      margin-bottom: 24px;
+      font-size: 26px; font-weight: 700;
+      color: var(--near-black); letter-spacing: -0.02em;
+      line-height: 1.15; margin-bottom: 12px;
     }
-    /* Form fields */
-    .modal-field { margin-bottom: 12px; }
-    .modal-field label {
-      display: block;
-      font-size: 10.5px;
-      font-weight: 600;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      margin-bottom: 5px;
+    .modal-desc {
+      font-size: 15px; color: var(--text-muted);
+      line-height: 1.65; letter-spacing: -0.01em; margin-bottom: 28px;
     }
-    .modal-field input {
-      width: 100%;
-      padding: 11px 13px;
-      border: 1.5px solid rgba(26,26,26,0.11);
-      border-radius: 10px;
-      font-size: 14px;
+    .modal-survey-btn {
+      display: flex; align-items: center; justify-content: center;
+      width: 100%; padding: 15px 24px;
+      background: var(--yellow); color: var(--black);
       font-family: 'Inter', system-ui, sans-serif;
-      color: var(--near-black);
-      background: #fafafa;
-      outline: none;
-      transition: border-color 0.18s, background 0.18s;
-      letter-spacing: -0.01em;
-    }
-    .modal-field input:focus {
-      border-color: var(--near-black);
-      background: #fff;
-    }
-    .modal-field-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-    /* Guarantee callout */
-    .modal-guarantee {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      background: rgba(240,224,48,0.08);
-      border: 1px solid rgba(240,224,48,0.24);
-      border-radius: 10px;
-      padding: 12px 14px;
-      margin-bottom: 18px;
-    }
-    .modal-guarantee-icon { flex-shrink: 0; margin-top: 1px; }
-    .modal-guarantee-text {
-      font-size: 12px;
-      color: rgba(26,26,26,0.58);
-      line-height: 1.65;
-      letter-spacing: -0.01em;
-    }
-    /* Actions */
-    .modal-actions { margin-top: 18px; display: flex; flex-direction: column; gap: 0; }
-    .modal-btn-primary {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      padding: 14px 24px;
-      background: var(--yellow);
-      color: var(--black);
-      border: none;
-      border-radius: 980px;
-      cursor: pointer;
+      font-size: 16px; font-weight: 700; letter-spacing: -0.01em;
+      border-radius: 980px; text-decoration: none;
       box-shadow: 0 2px 16px rgba(240,224,48,0.3);
       transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
     }
-    .modal-btn-primary:hover {
-      background: var(--yellow-hover);
-      box-shadow: 0 6px 24px rgba(240,224,48,0.38);
-      transform: translateY(-1px);
-    }
-    .modal-btn-primary:active { transform: scale(0.97); }
-    .modal-btn-cancel {
-      display: block;
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: 13px;
-      color: var(--text-muted);
-      padding: 10px 0 2px;
-      text-align: center;
-      width: 100%;
-      transition: color 0.18s;
-      letter-spacing: -0.01em;
-    }
-    .modal-btn-cancel:hover { color: var(--text); }
-    .modal-btn-back {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: 12px;
-      color: var(--text-dim);
-      padding: 0 0 16px;
-      transition: color 0.18s;
-      letter-spacing: -0.01em;
-    }
-    .modal-btn-back:hover { color: var(--text); }
+    .modal-survey-btn:hover { background: var(--yellow-hover); box-shadow: 0 6px 24px rgba(240,224,48,0.4); transform: translateY(-1px); }
+    .modal-survey-btn:active { transform: scale(0.97); }
 
     /* ── HERO PRODUCT GLOW ── */
     .hero-product-img { width: 126px; }
@@ -1781,68 +1645,16 @@
     </div>
   </div>
 
-  <!-- ── SIGNUP MODAL ── -->
-  <div class="modal-overlay" id="signupModal" role="dialog" aria-modal="true" aria-labelledby="s1Title">
+  <!-- ── SURVEY MODAL ── -->
+  <div class="modal-overlay" id="signupModal" role="dialog" aria-modal="true" aria-labelledby="surveyModalTitle">
     <div class="modal">
       <button class="modal-close" id="signupClose" aria-label="Close">✕</button>
-
-      <!-- Progress bars -->
-      <div class="modal-progress">
-        <div class="modal-prog-bar active" id="prog1"></div>
-        <div class="modal-prog-bar" id="prog2"></div>
+      <div class="modal-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg>
       </div>
-
-      <!-- Step 1: Identity -->
-      <div class="modal-panel active" id="signupStep1">
-        <p class="modal-eyebrow">Free Trial &nbsp;·&nbsp; Step 1 of 2</p>
-        <h3 class="modal-title" id="s1Title">Let's get<br>started.</h3>
-        <div class="modal-field">
-          <label for="s1Name">Name</label>
-          <input type="text" id="s1Name" placeholder="Your full name" autocomplete="name">
-        </div>
-        <div class="modal-field">
-          <label for="s1Email">Email</label>
-          <input type="email" id="s1Email" placeholder="you@example.com" autocomplete="email">
-        </div>
-        <div class="modal-actions">
-          <button class="modal-btn-primary" id="toStep2">Continue</button>
-          <button class="modal-btn-cancel" id="cancelStep1">Cancel</button>
-        </div>
-      </div>
-
-      <!-- Step 2: Payment -->
-      <div class="modal-panel" id="signupStep2">
-        <button class="modal-btn-back" id="toStep1">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 11L5 7L9 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Back
-        </button>
-        <p class="modal-eyebrow">Free Trial &nbsp;·&nbsp; Step 2 of 2</p>
-        <h3 class="modal-title">Payment<br>details.</h3>
-        <div class="modal-guarantee">
-          <span class="modal-guarantee-icon">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 1.5L2.5 4.5V9C2.5 12.59 5.35 15.93 9 16.5C12.65 15.93 15.5 12.59 15.5 9V4.5L9 1.5Z" fill="rgba(240,224,48,0.3)" stroke="#b8a800" stroke-width="1.3" stroke-linejoin="round"/><path d="M6.5 9L8.25 10.75L11.5 7.5" stroke="#856f00" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-          <p class="modal-guarantee-text">You won't be charged until after your 7-day free trial. Cancel anytime before day 7 with no charges.</p>
-        </div>
-        <div class="modal-field">
-          <label for="s2Card">Card Number</label>
-          <input type="text" id="s2Card" placeholder="1234  5678  9012  3456" maxlength="19" autocomplete="cc-number" inputmode="numeric">
-        </div>
-        <div class="modal-field-row">
-          <div class="modal-field">
-            <label for="s2Exp">Expiry</label>
-            <input type="text" id="s2Exp" placeholder="MM / YY" maxlength="7" autocomplete="cc-exp" inputmode="numeric">
-          </div>
-          <div class="modal-field">
-            <label for="s2Cvv">CVV</label>
-            <input type="text" id="s2Cvv" placeholder="···" maxlength="4" autocomplete="cc-csc" inputmode="numeric">
-          </div>
-        </div>
-        <div class="modal-actions">
-          <button class="modal-btn-primary" id="submitSignup">Start Your Free Trial</button>
-          <button class="modal-btn-cancel" id="cancelStep2">Cancel</button>
-        </div>
-      </div>
+      <h3 class="modal-heading" id="surveyModalTitle">Get Your Free Trial</h3>
+      <p class="modal-desc">Please take this survey and receive a 7-day free trial of newt.</p>
+      <a href="https://form.jotform.com/261066315005042" target="_blank" rel="noopener noreferrer" class="modal-survey-btn">Complete Survey</a>
     </div>
   </div>
 
@@ -1889,37 +1701,12 @@
 
   <script>
     const signupModal = document.getElementById('signupModal');
-    const step1Panel = document.getElementById('signupStep1');
-    const step2Panel = document.getElementById('signupStep2');
-    const prog1 = document.getElementById('prog1');
-    const prog2 = document.getElementById('prog2');
+    function openModal() { signupModal.classList.add('open'); }
+    function closeModal() { signupModal.classList.remove('open'); }
 
-    function showStep(n) {
-      step1Panel.classList.toggle('active', n === 1);
-      step2Panel.classList.toggle('active', n === 2);
-      prog1.className = 'modal-prog-bar ' + (n === 1 ? 'active' : 'done');
-      prog2.className = 'modal-prog-bar ' + (n === 2 ? 'active' : '');
-    }
-
-    function openModal() {
-      showStep(1);
-      signupModal.classList.add('open');
-    }
-
-    function closeModal() {
-      signupModal.classList.remove('open');
-    }
-
-    // Open triggers
     document.querySelectorAll('[data-trial]').forEach(el => {
       el.addEventListener('click', e => { e.preventDefault(); openModal(); });
     });
-
-    // Navigation
-    document.getElementById('toStep2').addEventListener('click', () => showStep(2));
-    document.getElementById('toStep1').addEventListener('click', () => showStep(1));
-    document.getElementById('cancelStep1').addEventListener('click', closeModal);
-    document.getElementById('cancelStep2').addEventListener('click', closeModal);
     document.getElementById('signupClose').addEventListener('click', closeModal);
     signupModal.addEventListener('click', e => { if (e.target === signupModal) closeModal(); });
 
@@ -1948,18 +1735,8 @@
       if (e.key === 'Escape') { closeModal(); closeCommunity(); }
     });
 
-    // Card number formatting
-    document.getElementById('s2Card').addEventListener('input', e => {
-      let v = e.target.value.replace(/\D/g,'').slice(0,16);
-      e.target.value = v.replace(/(.{4})/g,'$1  ').trim();
-    });
-    document.getElementById('s2Exp').addEventListener('input', e => {
-      let v = e.target.value.replace(/\D/g,'').slice(0,4);
-      if (v.length > 2) v = v.slice(0,2) + ' / ' + v.slice(2);
-      e.target.value = v;
-    });
 
-    // Product card checkbox gates CTA
+// Product card checkbox gates CTA
     const termCheckHero = document.getElementById('termCheckHero');
     const heroCta = document.getElementById('heroCta');
     termCheckHero.addEventListener('change', () => {
