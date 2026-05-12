@@ -839,9 +839,102 @@
     .mobile-menu-link:hover { color: #fff; background: rgba(255,255,255,0.05); }
     .mobile-menu-link:active { background: rgba(255,255,255,0.09); }
 
+    /* ── BENEFIT DARK CARDS ── */
+    .benefit-dark-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 12px; margin-bottom: 48px;
+    }
+    .benefit-dark-card {
+      background: #141414; border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px; padding: 22px 18px 18px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .benefit-dark-card:hover { transform: translateY(-3px); border-color: rgba(240,224,48,0.2); }
+    .benefit-dark-icon {
+      width: 40px; height: 40px; background: var(--yellow);
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      margin-bottom: 14px;
+    }
+    .benefit-dark-icon svg { width: 20px; height: 20px; color: var(--black); }
+    .benefit-dark-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px; font-weight: 700; color: #fff;
+      letter-spacing: -0.02em; margin-bottom: 4px;
+    }
+    .benefit-dark-ingr {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: rgba(240,224,48,0.5); margin-bottom: 8px;
+    }
+    .benefit-dark-desc { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.55; letter-spacing: -0.01em; }
+    .ingr-subheading {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(255,255,255,0.3);
+      text-align: center; margin-bottom: 24px;
+      padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* ── COMPARISON SECTION ── */
+    .comp-section { background: #fff; padding: 100px 24px; }
+    .comp-intro {
+      text-align: center; font-size: 15px; color: var(--text-muted);
+      max-width: 460px; margin: -32px auto 48px; line-height: 1.65; letter-spacing: -0.01em;
+    }
+    .comp-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .comp-table { width: 100%; border-collapse: collapse; min-width: 540px; }
+    .comp-table th {
+      padding: 14px 20px 12px; font-size: 13px; font-weight: 700;
+      letter-spacing: -0.01em; text-align: center; color: var(--near-black);
+      border-bottom: 2px solid rgba(26,26,26,0.09);
+    }
+    .comp-table th:first-child { text-align: left; font-weight: 400; color: var(--text-muted); font-size: 12px; }
+    .comp-table th.comp-newt-head {
+      background: rgba(240,224,48,0.1);
+      border-bottom: 2px solid rgba(240,224,48,0.5);
+      font-size: 15px; letter-spacing: -0.02em;
+    }
+    .comp-table td {
+      padding: 13px 20px; font-size: 13px;
+      color: var(--text-muted); text-align: center;
+      border-bottom: 1px solid rgba(26,26,26,0.06);
+    }
+    .comp-table td:first-child { text-align: left; font-weight: 500; color: var(--near-black); font-size: 13px; }
+    .comp-table tr:last-child td { border-bottom: none; }
+    .comp-table td.comp-newt-col { background: rgba(240,224,48,0.05); }
+    .comp-tag {
+      display: inline-flex; align-items: center; gap: 3px;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.02em;
+      padding: 4px 9px; border-radius: 980px; white-space: nowrap;
+    }
+    .comp-tag-green { background: rgba(45,138,78,0.1); color: #1e7a3a; }
+    .comp-tag-red { background: rgba(176,58,46,0.1); color: #b03a2e; }
+    .comp-tag-muted { background: rgba(26,26,26,0.07); color: var(--text-muted); }
+
+    /* ── FAQ ── */
+    .faq-section { background: var(--cream); padding: 100px 24px; }
+    .faq-list { display: flex; flex-direction: column; }
+    details.faq-item { border-bottom: 1px solid rgba(26,26,26,0.08); }
+    details.faq-item:first-child { border-top: 1px solid rgba(26,26,26,0.08); }
+    summary.faq-q {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 0; cursor: pointer;
+      font-size: 15px; font-weight: 600; color: var(--near-black);
+      letter-spacing: -0.01em; list-style: none; transition: color 0.18s;
+    }
+    summary.faq-q::-webkit-details-marker { display: none; }
+    summary.faq-q::after {
+      content: '+'; font-size: 22px; font-weight: 300; color: var(--text-dim);
+      flex-shrink: 0; margin-left: 16px; transition: transform 0.22s ease;
+    }
+    details[open] summary.faq-q::after { content: '−'; }
+    .faq-a {
+      font-size: 14px; color: var(--text-muted); line-height: 1.72;
+      letter-spacing: -0.01em; padding-bottom: 22px; max-width: 640px;
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 860px) {
       .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+      .benefit-dark-grid { grid-template-columns: repeat(2, 1fr); }
       .product-hero-inner { grid-template-columns: 1fr; gap: 40px; }
       .product-image-col { order: -1; }
       .product-img { width: 120px; }
@@ -860,6 +953,10 @@
       .hero-product-img { width: 64px; }
       .s-cream, .s-white, .s-dark { padding: 72px 20px; }
       .product-section { padding: 72px 20px; }
+      .comp-section { padding: 72px 0 72px; }
+      .comp-table-wrap { padding: 0 20px; }
+      .faq-section { padding: 72px 20px; }
+      .benefit-dark-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
       .product-tagline { max-width: 100%; }
       .social-section { padding: 72px 20px; }
       .trial-section { padding: 80px 20px 72px; }
@@ -1274,7 +1371,7 @@
       <li><a href="#ingredients">Ingredients</a></li>
       <li><a href="#trial">Free Trial</a></li>
     </ul>
-    <a href="#trial" class="nav-cta">Start Free Trial</a>
+    <a href="#" class="nav-cta" data-trial>Start Free Trial</a>
     <button class="nav-hamburger" aria-label="Open menu" id="navHamburger">
       <span></span><span></span><span></span>
     </button>
@@ -1342,71 +1439,161 @@
     </div>
   </div>
 
-  <!-- ── BENEFITS ── -->
-  <section id="benefits" class="s-cream">
+  <!-- ── BENEFITS + INGREDIENTS (COMBINED) ── -->
+  <section id="benefits" class="s-dark">
     <div class="container">
-      <p class="section-label section-label-dark">What Newt Does</p>
-      <h2 class="section-heading section-heading-dark">Built for your<br>best hours.</h2>
-      <div class="benefits-grid">
+      <p class="section-label section-label-light">What Newt Does</p>
+      <h2 class="section-heading section-heading-light">Clinically dosed.<br>Nothing hidden.</h2>
 
-        <div class="benefit-card">
-          <div class="benefit-icon">
-            <!-- Lightning bolt -->
-            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path d="M13 2L4 13.5H11L10 22L20 10.5H13L13 2Z"/>
-            </svg>
+      <!-- Benefit cards (dark) -->
+      <div class="benefit-dark-grid">
+        <div class="benefit-dark-card">
+          <div class="benefit-dark-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L4 13.5H11L10 22L20 10.5H13L13 2Z"/></svg>
           </div>
-          <p class="benefit-title">Clean Energy</p>
-          <p class="benefit-ingredient">Caffeine · 200mg</p>
-          <p class="benefit-desc">Fast-onset energy, no crash.</p>
+          <p class="benefit-dark-title">Clean Energy</p>
+          <p class="benefit-dark-ingr">Caffeine · 200mg</p>
+          <p class="benefit-dark-desc">Fast-onset energy, no crash.</p>
         </div>
-
-        <div class="benefit-card">
-          <div class="benefit-icon">
-            <!-- Target / crosshair -->
+        <div class="benefit-dark-card">
+          <div class="benefit-dark-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-              <circle cx="12" cy="12" r="8"/>
-              <circle cx="12" cy="12" r="3"/>
-              <line x1="12" y1="4" x2="12" y2="7"/>
-              <line x1="12" y1="17" x2="12" y2="20"/>
-              <line x1="4" y1="12" x2="7" y2="12"/>
-              <line x1="17" y1="12" x2="20" y2="12"/>
+              <circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/>
+              <line x1="12" y1="4" x2="12" y2="7"/><line x1="12" y1="17" x2="12" y2="20"/>
+              <line x1="4" y1="12" x2="7" y2="12"/><line x1="17" y1="12" x2="20" y2="12"/>
             </svg>
           </div>
-          <p class="benefit-title">All-Day Focus</p>
-          <p class="benefit-ingredient">L-Tyrosine · 800mg</p>
-          <p class="benefit-desc">Sustains drive and mental stamina.</p>
+          <p class="benefit-dark-title">All-Day Focus</p>
+          <p class="benefit-dark-ingr">L-Tyrosine · 800mg</p>
+          <p class="benefit-dark-desc">Sustains drive and mental stamina.</p>
         </div>
-
-        <div class="benefit-card">
-          <div class="benefit-icon">
-            <!-- Wave / calm -->
+        <div class="benefit-dark-card">
+          <div class="benefit-dark-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
               <path d="M2 12 C5 7, 8 17, 12 12 C16 7, 19 17, 22 12"/>
             </svg>
           </div>
-          <p class="benefit-title">Mental Clarity</p>
-          <p class="benefit-ingredient">L-Theanine · 150mg</p>
-          <p class="benefit-desc">Jitter-free calm that extends focus.</p>
+          <p class="benefit-dark-title">Mental Clarity</p>
+          <p class="benefit-dark-ingr">L-Theanine · 150mg</p>
+          <p class="benefit-dark-desc">Jitter-free calm that extends focus.</p>
         </div>
-
-        <div class="benefit-card">
-          <div class="benefit-icon">
-            <!-- Connected nodes / cognition -->
+        <div class="benefit-dark-card">
+          <div class="benefit-dark-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="4.5" r="2"/>
-              <circle cx="4.5" cy="19" r="2"/>
-              <circle cx="19.5" cy="19" r="2"/>
-              <line x1="12" y1="6.5" x2="5.5" y2="17"/>
-              <line x1="12" y1="6.5" x2="18.5" y2="17"/>
+              <circle cx="12" cy="4.5" r="2"/><circle cx="4.5" cy="19" r="2"/><circle cx="19.5" cy="19" r="2"/>
+              <line x1="12" y1="6.5" x2="5.5" y2="17"/><line x1="12" y1="6.5" x2="18.5" y2="17"/>
               <line x1="6.5" y1="19" x2="17.5" y2="19"/>
             </svg>
           </div>
-          <p class="benefit-title">Cognitive Function</p>
-          <p class="benefit-ingredient">Alpha GPC · 600mg</p>
-          <p class="benefit-desc">Sharper memory and decision-making.</p>
+          <p class="benefit-dark-title">Cognitive Function</p>
+          <p class="benefit-dark-ingr">Alpha GPC · 600mg</p>
+          <p class="benefit-dark-desc">Sharper memory and decision-making.</p>
         </div>
+      </div>
 
+      <!-- Ingredient breakdown -->
+      <p class="ingr-subheading"><span id="ingredients"></span>What's Inside</p>
+      <div class="ingr-groups">
+        <div class="ingr-group">
+          <p class="ingr-group-num">01</p>
+          <p class="ingr-group-title">Energy &amp;<br>Focus</p>
+          <div class="ingr-list">
+            <span class="ingr-item"><span class="ingr-name">Caffeine Anhydrous</span><span class="ingr-benefit">Clean Energy</span></span>
+            <span class="ingr-item"><span class="ingr-name">L-Tyrosine</span><span class="ingr-benefit">Sharp Drive</span></span>
+            <span class="ingr-item"><span class="ingr-name">Sodium Citrate</span><span class="ingr-benefit">Smooth Absorption</span></span>
+          </div>
+        </div>
+        <div class="ingr-group">
+          <p class="ingr-group-num">02</p>
+          <p class="ingr-group-title">Calm<br>Clarity</p>
+          <div class="ingr-list">
+            <span class="ingr-item"><span class="ingr-name">L-Theanine</span><span class="ingr-benefit">Calm Focus</span></span>
+            <span class="ingr-item"><span class="ingr-name">Acacia Fiber</span><span class="ingr-benefit">Gut Health</span></span>
+            <span class="ingr-item"><span class="ingr-name">Allulose</span><span class="ingr-benefit">No Sugar</span></span>
+          </div>
+        </div>
+        <div class="ingr-group">
+          <p class="ingr-group-num">03</p>
+          <p class="ingr-group-title">Cognitive<br>Function</p>
+          <div class="ingr-list">
+            <span class="ingr-item"><span class="ingr-name">Alpha GPC</span><span class="ingr-benefit">Sharp Memory</span></span>
+            <span class="ingr-item"><span class="ingr-name">Lemon Powder</span><span class="ingr-benefit">Natural Flavor</span></span>
+            <span class="ingr-item"><span class="ingr-name">Silicon Dioxide</span><span class="ingr-benefit">Flow Agent</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── COMPARISON ── -->
+  <section class="comp-section">
+    <div class="container">
+      <p class="section-label section-label-dark">How We Stack Up</p>
+      <h2 class="section-heading section-heading-dark">Why choose<br>newt?</h2>
+      <p class="comp-intro">Not all focus products are built the same. Here's how Newt compares to your everyday alternatives.</p>
+      <div class="comp-table-wrap">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th class="comp-newt-head comp-newt-col">newt<span style="display:inline-block;width:5px;height:5px;background:var(--yellow);border-radius:50%;margin-left:1px;position:relative;top:-3px;"></span></th>
+              <th>Coffee</th>
+              <th>Tea</th>
+              <th>Energy Drink</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Duration of Effect</td>
+              <td class="comp-newt-col">5–7 hours</td>
+              <td>2–4 hours</td>
+              <td>2–3 hours</td>
+              <td>2–4 hours</td>
+            </tr>
+            <tr>
+              <td>Jitter Risk</td>
+              <td class="comp-newt-col"><span class="comp-tag comp-tag-green">✓ None</span></td>
+              <td><span class="comp-tag comp-tag-red">✗ High</span></td>
+              <td><span class="comp-tag comp-tag-muted">Low</span></td>
+              <td><span class="comp-tag comp-tag-red">✗ Very High</span></td>
+            </tr>
+            <tr>
+              <td>Afternoon Crash</td>
+              <td class="comp-newt-col"><span class="comp-tag comp-tag-green">✓ None</span></td>
+              <td><span class="comp-tag comp-tag-red">✗ Common</span></td>
+              <td><span class="comp-tag comp-tag-muted">Mild</span></td>
+              <td><span class="comp-tag comp-tag-red">✗ Severe</span></td>
+            </tr>
+            <tr>
+              <td>Cognitive Boost</td>
+              <td class="comp-newt-col"><span class="comp-tag comp-tag-green">✓ High</span></td>
+              <td><span class="comp-tag comp-tag-muted">Low</span></td>
+              <td><span class="comp-tag comp-tag-muted">Low</span></td>
+              <td><span class="comp-tag comp-tag-muted">Low</span></td>
+            </tr>
+            <tr>
+              <td>Sugar per Serving</td>
+              <td class="comp-newt-col"><span class="comp-tag comp-tag-green">✓ 0g</span></td>
+              <td><span class="comp-tag comp-tag-green">✓ 0g</span></td>
+              <td><span class="comp-tag comp-tag-green">✓ 0g</span></td>
+              <td><span class="comp-tag comp-tag-red">✗ ~27g</span></td>
+            </tr>
+            <tr>
+              <td>Clinically Dosed</td>
+              <td class="comp-newt-col"><span class="comp-tag comp-tag-green">✓ Yes</span></td>
+              <td><span class="comp-tag comp-tag-red">✗ No</span></td>
+              <td><span class="comp-tag comp-tag-red">✗ No</span></td>
+              <td><span class="comp-tag comp-tag-red">✗ No</span></td>
+            </tr>
+            <tr>
+              <td>Clean Ingredients</td>
+              <td class="comp-newt-col"><span class="comp-tag comp-tag-green">✓ Yes</span></td>
+              <td><span class="comp-tag comp-tag-green">✓ Yes</span></td>
+              <td><span class="comp-tag comp-tag-green">✓ Yes</span></td>
+              <td><span class="comp-tag comp-tag-red">✗ No</span></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </section>
@@ -1462,43 +1649,6 @@
         </div>
       </div>
 
-    </div>
-  </section>
-
-  <!-- ── INGREDIENTS ── -->
-  <section id="ingredients" class="s-dark">
-    <div class="container">
-      <p class="section-label section-label-light">What's Inside</p>
-      <h2 class="section-heading section-heading-light">Clinically dosed.<br>Nothing hidden.</h2>
-      <div class="ingr-groups">
-        <div class="ingr-group">
-          <p class="ingr-group-num">01</p>
-          <p class="ingr-group-title">Energy &amp;<br>Focus</p>
-          <div class="ingr-list">
-            <span class="ingr-item"><span class="ingr-name">Caffeine Anhydrous</span><span class="ingr-benefit">Clean Energy</span></span>
-            <span class="ingr-item"><span class="ingr-name">L-Tyrosine</span><span class="ingr-benefit">Sharp Drive</span></span>
-            <span class="ingr-item"><span class="ingr-name">Sodium Citrate</span><span class="ingr-benefit">Smooth Absorption</span></span>
-          </div>
-        </div>
-        <div class="ingr-group">
-          <p class="ingr-group-num">02</p>
-          <p class="ingr-group-title">Calm<br>Clarity</p>
-          <div class="ingr-list">
-            <span class="ingr-item"><span class="ingr-name">L-Theanine</span><span class="ingr-benefit">Calm Focus</span></span>
-            <span class="ingr-item"><span class="ingr-name">Acacia Fiber</span><span class="ingr-benefit">Gut Health</span></span>
-            <span class="ingr-item"><span class="ingr-name">Allulose</span><span class="ingr-benefit">No Sugar</span></span>
-          </div>
-        </div>
-        <div class="ingr-group">
-          <p class="ingr-group-num">03</p>
-          <p class="ingr-group-title">Cognitive<br>Function</p>
-          <div class="ingr-list">
-            <span class="ingr-item"><span class="ingr-name">Alpha GPC</span><span class="ingr-benefit">Sharp Memory</span></span>
-            <span class="ingr-item"><span class="ingr-name">Lemon Powder</span><span class="ingr-benefit">Natural Flavor</span></span>
-            <span class="ingr-item"><span class="ingr-name">Silicon Dioxide</span><span class="ingr-benefit">Flow Agent</span></span>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -1657,6 +1807,57 @@
       <a href="https://form.jotform.com/261066315005042" target="_blank" rel="noopener noreferrer" class="modal-survey-btn">Complete Survey</a>
     </div>
   </div>
+
+  <!-- ── FAQ ── -->
+  <section id="faq" class="faq-section">
+    <div class="container" style="max-width:700px;">
+      <p class="section-label section-label-dark">Have Questions?</p>
+      <h2 class="section-heading section-heading-dark">Frequently<br>asked.</h2>
+      <div class="faq-list">
+
+        <details class="faq-item">
+          <summary class="faq-q">What is Newt?</summary>
+          <p class="faq-a">Newt is a premium nootropic drink mix formulated for clean energy, sustained focus, and mental clarity. Each single-serve stick pack contains clinically dosed ingredients — including Caffeine, L-Theanine, L-Tyrosine, and Alpha GPC — designed to help you perform at your best without jitters or a crash.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">How long does it take to feel the effects?</summary>
+          <p class="faq-a">Most users notice effects within 20–30 minutes of consumption. The energy and focus typically lasts 5–7 hours, with no harsh come-down — thanks to L-Theanine balancing the caffeine for smooth, sustained performance.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">Is Newt safe to take daily?</summary>
+          <p class="faq-a">Yes. Newt is formulated with ingredients at levels intended for daily use. We recommend one stick pack per day. If you have any medical conditions, are pregnant, or are sensitive to caffeine, consult a healthcare professional before use. Not for those under 18.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">Can I cancel my subscription?</summary>
+          <p class="faq-a">Absolutely. You can cancel anytime — no phone calls, no hassle. Cancel during your 7-day free trial and you won't be charged a cent. After the trial, cancel before your next billing date to avoid future charges. Everything is managed through your account dashboard.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">What are the ingredients?</summary>
+          <p class="faq-a">Newt contains: Caffeine Anhydrous (200mg), L-Tyrosine (800mg), L-Theanine (150mg), Alpha GPC (600mg), Acacia Fiber, Allulose, Sodium Citrate, Lemon Powder, and Silicon Dioxide. No artificial sweeteners, no sugar, no proprietary blends — just clinical doses of proven ingredients.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">Is there a money-back guarantee?</summary>
+          <p class="faq-a">Yes. We offer a 30-day money-back guarantee. If you're not satisfied with your experience, contact our support team and we'll make it right — no questions asked.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">How does the free trial work?</summary>
+          <p class="faq-a">Your 7-day free trial starts the day your order ships. Complete our short survey to get started. If you don't cancel before day 7, you'll be enrolled in a recurring subscription billed every 21 days. Cancel any time before day 7 with zero charges.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">When will I receive my order?</summary>
+          <p class="faq-a">Orders ship within 1–2 business days. Standard delivery is 3–5 business days. Shipping is always free — on your trial and every reorder.</p>
+        </details>
+
+      </div>
+    </div>
+  </section>
 
   <!-- ── FOOTER ── -->
   <footer>
