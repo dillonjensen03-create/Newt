@@ -931,10 +931,56 @@
       letter-spacing: -0.01em; padding-bottom: 22px; max-width: 640px;
     }
 
+    /* ── UNIFIED BENEFIT+INGREDIENT CARDS ── */
+    .unified-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    }
+    .unified-card {
+      background: #141414; border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 18px; padding: 32px 28px 28px;
+      transition: transform 0.22s ease, border-color 0.22s ease;
+    }
+    .unified-card:hover { transform: translateY(-4px); border-color: rgba(240,224,48,0.22); }
+    .unified-icon {
+      width: 48px; height: 48px; background: var(--yellow);
+      border-radius: 12px; display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+    }
+    .unified-icon svg { width: 24px; height: 24px; color: var(--black); }
+    .unified-num {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(240,224,48,0.45); margin-bottom: 6px;
+    }
+    .unified-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 24px; font-weight: 700; color: #fff;
+      letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 6px;
+    }
+    .unified-tagline {
+      font-size: 13px; color: rgba(255,255,255,0.35);
+      letter-spacing: -0.01em; line-height: 1.5; margin-bottom: 22px;
+    }
+    .unified-divider { height: 1px; background: rgba(255,255,255,0.06); margin-bottom: 18px; }
+    .unified-ingr-list { display: flex; flex-direction: column; gap: 10px; }
+    .unified-ingr-row { display: flex; justify-content: space-between; align-items: center; }
+    .unified-ingr-name {
+      font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.6);
+      letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px;
+    }
+    .unified-ingr-name::before {
+      content: ''; display: inline-block; width: 4px; height: 4px;
+      background: var(--yellow); border-radius: 50%; flex-shrink: 0; opacity: 0.6;
+    }
+    .unified-ingr-dose {
+      font-size: 11px; font-weight: 600; color: rgba(240,224,48,0.5);
+      letter-spacing: 0.04em; white-space: nowrap;
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 860px) {
       .benefits-grid { grid-template-columns: repeat(2, 1fr); }
       .benefit-dark-grid { grid-template-columns: repeat(2, 1fr); }
+      .unified-grid { grid-template-columns: 1fr; gap: 12px; }
       .product-hero-inner { grid-template-columns: 1fr; gap: 40px; }
       .product-image-col { order: -1; }
       .product-img { width: 120px; }
@@ -1445,82 +1491,74 @@
       <p class="section-label section-label-light">What Newt Does</p>
       <h2 class="section-heading section-heading-light">Clinically dosed.<br>Nothing hidden.</h2>
 
-      <!-- Benefit cards (dark) -->
-      <div class="benefit-dark-grid">
-        <div class="benefit-dark-card">
-          <div class="benefit-dark-icon">
+      <span id="ingredients"></span>
+      <div class="unified-grid">
+
+        <!-- Card 1 -->
+        <div class="unified-card">
+          <div class="unified-icon">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L4 13.5H11L10 22L20 10.5H13L13 2Z"/></svg>
           </div>
-          <p class="benefit-dark-title">Clean Energy</p>
-          <p class="benefit-dark-ingr">Caffeine · 200mg</p>
-          <p class="benefit-dark-desc">Fast-onset energy, no crash.</p>
-        </div>
-        <div class="benefit-dark-card">
-          <div class="benefit-dark-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-              <circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/>
-              <line x1="12" y1="4" x2="12" y2="7"/><line x1="12" y1="17" x2="12" y2="20"/>
-              <line x1="4" y1="12" x2="7" y2="12"/><line x1="17" y1="12" x2="20" y2="12"/>
-            </svg>
+          <p class="unified-num">01</p>
+          <p class="unified-title">Sharp Energy</p>
+          <p class="unified-tagline">Fast-onset fuel. All-day drive. No crash.</p>
+          <div class="unified-divider"></div>
+          <div class="unified-ingr-list">
+            <div class="unified-ingr-row">
+              <span class="unified-ingr-name">Caffeine Anhydrous</span>
+              <span class="unified-ingr-dose">200mg</span>
+            </div>
+            <div class="unified-ingr-row">
+              <span class="unified-ingr-name">L-Tyrosine</span>
+              <span class="unified-ingr-dose">800mg</span>
+            </div>
           </div>
-          <p class="benefit-dark-title">All-Day Focus</p>
-          <p class="benefit-dark-ingr">L-Tyrosine · 800mg</p>
-          <p class="benefit-dark-desc">Sustains drive and mental stamina.</p>
         </div>
-        <div class="benefit-dark-card">
-          <div class="benefit-dark-icon">
+
+        <!-- Card 2 -->
+        <div class="unified-card">
+          <div class="unified-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
               <path d="M2 12 C5 7, 8 17, 12 12 C16 7, 19 17, 22 12"/>
             </svg>
           </div>
-          <p class="benefit-dark-title">Mental Clarity</p>
-          <p class="benefit-dark-ingr">L-Theanine · 150mg</p>
-          <p class="benefit-dark-desc">Jitter-free calm that extends focus.</p>
+          <p class="unified-num">02</p>
+          <p class="unified-title">Smooth Clarity</p>
+          <p class="unified-tagline">Jitter-free calm that extends your focus window.</p>
+          <div class="unified-divider"></div>
+          <div class="unified-ingr-list">
+            <div class="unified-ingr-row">
+              <span class="unified-ingr-name">L-Theanine</span>
+              <span class="unified-ingr-dose">150mg</span>
+            </div>
+            <div class="unified-ingr-row">
+              <span class="unified-ingr-name">Acacia Fiber</span>
+              <span class="unified-ingr-dose">Gut support</span>
+            </div>
+          </div>
         </div>
-        <div class="benefit-dark-card">
-          <div class="benefit-dark-icon">
+
+        <!-- Card 3 -->
+        <div class="unified-card">
+          <div class="unified-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="4.5" r="2"/><circle cx="4.5" cy="19" r="2"/><circle cx="19.5" cy="19" r="2"/>
               <line x1="12" y1="6.5" x2="5.5" y2="17"/><line x1="12" y1="6.5" x2="18.5" y2="17"/>
               <line x1="6.5" y1="19" x2="17.5" y2="19"/>
             </svg>
           </div>
-          <p class="benefit-dark-title">Cognitive Function</p>
-          <p class="benefit-dark-ingr">Alpha GPC · 600mg</p>
-          <p class="benefit-dark-desc">Sharper memory and decision-making.</p>
+          <p class="unified-num">03</p>
+          <p class="unified-title">Peak Cognition</p>
+          <p class="unified-tagline">Sharper memory, faster decisions, deeper focus.</p>
+          <div class="unified-divider"></div>
+          <div class="unified-ingr-list">
+            <div class="unified-ingr-row">
+              <span class="unified-ingr-name">Alpha GPC</span>
+              <span class="unified-ingr-dose">600mg</span>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <!-- Ingredient breakdown -->
-      <p class="ingr-subheading"><span id="ingredients"></span>What's Inside</p>
-      <div class="ingr-groups">
-        <div class="ingr-group">
-          <p class="ingr-group-num">01</p>
-          <p class="ingr-group-title">Energy &amp;<br>Focus</p>
-          <div class="ingr-list">
-            <span class="ingr-item"><span class="ingr-name">Caffeine Anhydrous</span><span class="ingr-benefit">Clean Energy</span></span>
-            <span class="ingr-item"><span class="ingr-name">L-Tyrosine</span><span class="ingr-benefit">Sharp Drive</span></span>
-            <span class="ingr-item"><span class="ingr-name">Sodium Citrate</span><span class="ingr-benefit">Smooth Absorption</span></span>
-          </div>
-        </div>
-        <div class="ingr-group">
-          <p class="ingr-group-num">02</p>
-          <p class="ingr-group-title">Calm<br>Clarity</p>
-          <div class="ingr-list">
-            <span class="ingr-item"><span class="ingr-name">L-Theanine</span><span class="ingr-benefit">Calm Focus</span></span>
-            <span class="ingr-item"><span class="ingr-name">Acacia Fiber</span><span class="ingr-benefit">Gut Health</span></span>
-            <span class="ingr-item"><span class="ingr-name">Allulose</span><span class="ingr-benefit">No Sugar</span></span>
-          </div>
-        </div>
-        <div class="ingr-group">
-          <p class="ingr-group-num">03</p>
-          <p class="ingr-group-title">Cognitive<br>Function</p>
-          <div class="ingr-list">
-            <span class="ingr-item"><span class="ingr-name">Alpha GPC</span><span class="ingr-benefit">Sharp Memory</span></span>
-            <span class="ingr-item"><span class="ingr-name">Lemon Powder</span><span class="ingr-benefit">Natural Flavor</span></span>
-            <span class="ingr-item"><span class="ingr-name">Silicon Dioxide</span><span class="ingr-benefit">Flow Agent</span></span>
-          </div>
-        </div>
       </div>
     </div>
   </section>
