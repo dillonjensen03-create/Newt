@@ -264,12 +264,12 @@
       width: 103px;
       border-radius: 0;
       mix-blend-mode: multiply;
-      filter: contrast(1.12) brightness(1.02) saturate(1.08);
+      filter: contrast(1.18) brightness(1.06) saturate(1.18) drop-shadow(0 8px 28px rgba(0,0,0,0.22));
       transition: transform 0.4s ease, filter 0.4s ease;
     }
     .hero-product-img:hover {
       transform: translateY(-6px) scale(1.02);
-      filter: contrast(1.15) brightness(1.04) saturate(1.1);
+      filter: contrast(1.22) brightness(1.09) saturate(1.22) drop-shadow(0 16px 40px rgba(0,0,0,0.28));
     }
     .hero-badge {
       position: absolute;
@@ -709,19 +709,22 @@
       content: '';
       position: absolute; left: 50%; top: 50%;
       transform: translate(-50%, -50%);
-      width: 400px; height: 400px;
-      background: radial-gradient(ellipse at center, rgba(240,224,48,0.1) 0%, transparent 65%);
+      width: 420px; height: 420px;
+      background: radial-gradient(ellipse at center, rgba(240,224,48,0.16) 0%, rgba(240,224,48,0.04) 45%, transparent 70%);
       pointer-events: none;
     }
     .product-img-wrap { position: relative; display: inline-block; z-index: 1; }
     .product-img {
       width: 157px;
       mix-blend-mode: multiply;
-      filter: contrast(1.12) brightness(1.02) saturate(1.08);
-      transition: transform 0.4s ease;
+      filter: contrast(1.18) brightness(1.06) saturate(1.18) drop-shadow(0 10px 36px rgba(0,0,0,0.2));
+      transition: transform 0.4s ease, filter 0.4s ease;
       display: block;
     }
-    .product-img:hover { transform: translateY(-8px) scale(1.02); }
+    .product-img:hover {
+      transform: translateY(-8px) scale(1.02);
+      filter: contrast(1.22) brightness(1.09) saturate(1.22) drop-shadow(0 20px 52px rgba(0,0,0,0.26));
+    }
     .product-img-badge {
       position: absolute; top: -10px; right: -20px;
       background: var(--yellow); color: var(--black);
@@ -1206,8 +1209,8 @@
       position: absolute;
       left: 50%; top: 50%;
       transform: translate(-50%, -50%);
-      width: 320px; height: 320px;
-      background: radial-gradient(ellipse at center, rgba(240,224,48,0.1) 0%, transparent 62%);
+      width: 340px; height: 340px;
+      background: radial-gradient(ellipse at center, rgba(240,224,48,0.16) 0%, rgba(240,224,48,0.04) 45%, transparent 68%);
       pointer-events: none;
       z-index: 0;
     }
