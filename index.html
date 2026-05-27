@@ -56,7 +56,9 @@
       text-decoration: none;
       display: flex;
       align-items: center;
+      transition: opacity 0.2s;
     }
+    .nav-logo:hover { opacity: 0.8; }
     .nav-logo-dot {
       display: inline-block;
       width: 7px; height: 7px;
@@ -79,7 +81,8 @@
       letter-spacing: -0.01em;
       transition: color 0.2s;
     }
-    .nav-links a:hover { color: #fff; }
+    .nav-links a:hover { color: #fff; transform: translateY(-1px); }
+    .nav-links a { transition: color 0.2s, transform 0.2s; display: inline-block; }
     .nav-cta {
       background: var(--yellow);
       color: var(--black);
@@ -91,7 +94,7 @@
       letter-spacing: -0.01em;
       transition: background 0.2s, transform 0.15s;
     }
-    .nav-cta:hover { background: var(--yellow-hover); transform: translateY(-1px); }
+    .nav-cta:hover { background: var(--yellow-hover); transform: translateY(-1px) scale(1.04); }
     .nav-cta:active { transform: scale(0.97); }
     .nav-hamburger {
       display: none;
@@ -222,7 +225,7 @@
     }
     .btn-fill:hover {
       background: #2a2a2a;
-      transform: translateY(-2px);
+      transform: translateY(-2px) scale(1.02);
       box-shadow: 0 6px 24px rgba(0,0,0,0.22);
     }
     .btn-fill:active { transform: scale(0.97); }
@@ -250,7 +253,7 @@
     .btn-ghost:hover {
       border-color: rgba(26,26,26,0.5);
       color: var(--near-black);
-      transform: translateY(-2px);
+      transform: translateY(-2px) scale(1.02);
     }
     .btn-ghost:active { transform: scale(0.97); }
     .hero-product-wrap {
@@ -383,7 +386,7 @@
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
     .benefit-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-4px) scale(1.02);
       box-shadow: 0 12px 40px rgba(26,26,26,0.1);
     }
     .benefit-icon {
@@ -439,7 +442,7 @@
       transition: transform 0.2s ease, border-color 0.2s ease;
     }
     .ingr-group:hover {
-      transform: translateY(-3px);
+      transform: translateY(-3px) scale(1.02);
       border-color: rgba(240,224,48,0.18);
     }
     .ingr-group-num {
@@ -648,7 +651,9 @@
       letter-spacing: -0.03em;
       display: flex;
       align-items: center;
+      transition: opacity 0.2s;
     }
+    .footer-logo:hover { opacity: 0.7; }
     .footer-dot {
       display: inline-block;
       width: 6px; height: 6px;
@@ -809,7 +814,7 @@
       box-shadow: 0 2px 16px rgba(240,224,48,0.3);
       transition: background 0.2s, transform 0.15s, box-shadow 0.2s, opacity 0.2s;
     }
-    .sub-cta-btn:hover:not(:disabled) { background: var(--yellow-hover); box-shadow: 0 6px 24px rgba(240,224,48,0.4); transform: translateY(-1px); }
+    .sub-cta-btn:hover:not(:disabled) { background: var(--yellow-hover); box-shadow: 0 6px 24px rgba(240,224,48,0.4); transform: translateY(-1px) scale(1.02); }
     .sub-cta-btn:active:not(:disabled) { transform: scale(0.97); }
     .sub-cta-btn:disabled { opacity: 0.42; cursor: not-allowed; }
     .sub-footnote { font-size: 11px; color: var(--text-dim); text-align: center; margin-top: 12px; letter-spacing: -0.01em; }
@@ -941,7 +946,7 @@
       box-shadow: 0 4px 24px rgba(240, 224, 48, 0.3);
       transition: background 0.2s, box-shadow 0.2s, transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    .mobile-menu-cta:hover { background: var(--yellow-hover); box-shadow: 0 8px 32px rgba(240,224,48,0.42); transform: translateY(-2px); }
+    .mobile-menu-cta:hover { background: var(--yellow-hover); box-shadow: 0 8px 32px rgba(240,224,48,0.42); transform: translateY(-2px) scale(1.02); }
     .mobile-menu-cta:active { transform: scale(0.97); }
 
     /* ── BENEFIT DARK CARDS ── */
@@ -954,7 +959,7 @@
       border-radius: 14px; padding: 22px 18px 18px;
       transition: transform 0.2s ease, border-color 0.2s ease;
     }
-    .benefit-dark-card:hover { transform: translateY(-3px); border-color: rgba(240,224,48,0.2); }
+    .benefit-dark-card:hover { transform: translateY(-3px) scale(1.02); border-color: rgba(240,224,48,0.2); }
     .benefit-dark-icon {
       width: 40px; height: 40px; background: var(--yellow);
       border-radius: 10px; display: flex; align-items: center; justify-content: center;
@@ -1013,6 +1018,9 @@
     .comp-tag-green { background: rgba(45,138,78,0.1); color: #1e7a3a; }
     .comp-tag-red { background: rgba(176,58,46,0.1); color: #b03a2e; }
     .comp-tag-muted { background: rgba(26,26,26,0.07); color: var(--text-muted); }
+    .comp-table tbody tr { transition: background 0.18s; }
+    .comp-table tbody tr:hover td { background: rgba(26,26,26,0.025); }
+    .comp-table tbody tr:hover td.comp-newt-col { background: rgba(240,224,48,0.09); }
 
     /* ── FAQ ── */
     .faq-section { background: var(--cream); padding: 100px 24px; }
@@ -1028,9 +1036,11 @@
     summary.faq-q::-webkit-details-marker { display: none; }
     summary.faq-q::after {
       content: '+'; font-size: 22px; font-weight: 300; color: var(--text-dim);
-      flex-shrink: 0; margin-left: 16px; transition: transform 0.22s ease;
+      flex-shrink: 0; margin-left: 16px; transition: transform 0.22s ease, color 0.22s ease;
     }
     details[open] summary.faq-q::after { content: '−'; }
+    summary.faq-q:hover { color: var(--black); }
+    summary.faq-q:hover::after { color: rgba(240,224,48,0.75); }
     .faq-a {
       font-size: 14px; color: var(--text-muted); line-height: 1.72;
       letter-spacing: -0.01em; padding-bottom: 22px; max-width: 640px;
@@ -1045,7 +1055,7 @@
       border-radius: 18px; padding: 32px 28px 28px;
       transition: transform 0.22s ease, border-color 0.22s ease;
     }
-    .unified-card:hover { transform: translateY(-4px); border-color: rgba(240,224,48,0.22); }
+    .unified-card:hover { transform: translateY(-4px) scale(1.02); border-color: rgba(240,224,48,0.22); }
     .unified-icon {
       width: 48px; height: 48px; background: var(--yellow);
       border-radius: 12px; display: flex; align-items: center; justify-content: center;
@@ -1183,7 +1193,7 @@
       box-shadow: 0 2px 16px rgba(240,224,48,0.3);
       transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
     }
-    .modal-survey-btn:hover { background: var(--yellow-hover); box-shadow: 0 6px 24px rgba(240,224,48,0.4); transform: translateY(-1px); }
+    .modal-survey-btn:hover { background: var(--yellow-hover); box-shadow: 0 6px 24px rgba(240,224,48,0.4); transform: translateY(-1px) scale(1.02); }
     .modal-survey-btn:active { transform: scale(0.97); }
 
     /* ── HERO PRODUCT GLOW ── */
@@ -1245,7 +1255,7 @@
       transition: transform 0.22s ease, box-shadow 0.22s ease;
     }
     .testimonial-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-4px) scale(1.02);
       box-shadow: 0 12px 36px rgba(26,26,26,0.08);
     }
     .t-stars { display: flex; gap: 2px; margin-bottom: 14px; }
@@ -1322,7 +1332,7 @@
       font-family: 'Inter', system-ui, sans-serif;
       transition: background 0.2s, transform 0.15s;
     }
-    .email-btn:hover { background: var(--yellow-hover); transform: translateY(-1px); }
+    .email-btn:hover { background: var(--yellow-hover); transform: translateY(-1px) scale(1.02); }
     .email-btn:active { transform: scale(0.97); }
 
     /* ── FOOTER TRUST ── */
@@ -1457,7 +1467,7 @@
     .community-submit:hover {
       background: var(--yellow-hover);
       box-shadow: 0 6px 24px rgba(240,224,48,0.38);
-      transform: translateY(-1px);
+      transform: translateY(-1px) scale(1.02);
     }
     .community-submit:active { transform: scale(0.97); }
     .community-confirm {
