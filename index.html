@@ -342,9 +342,9 @@
     }
 
     /* ── SECTIONS ── */
-    .s-cream { background: var(--cream); padding: 100px 24px; }
-    .s-white { background: #fff; padding: 100px 24px; }
-    .s-dark { background: var(--black); padding: 100px 24px; }
+    .s-cream { background: var(--cream); padding: 80px 24px; }
+    .s-white { background: #fff; padding: 80px 24px; }
+    .s-dark { background: var(--black); padding: 80px 24px; }
     .container { max-width: 980px; margin: 0 auto; }
 
     .section-label {
@@ -365,7 +365,7 @@
       line-height: 1.06;
       letter-spacing: -0.03em;
       text-align: center;
-      margin-bottom: 56px;
+      margin-bottom: 44px;
     }
     .section-heading-dark { color: var(--near-black); }
     .section-heading-light { color: #fff; }
@@ -496,7 +496,7 @@
     /* ── TRIAL ── */
     .trial-section {
       background: var(--black);
-      padding: 110px 24px 100px;
+      padding: 88px 24px 80px;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -566,7 +566,7 @@
     }
     .trial-trust-wrap {
       position: relative;
-      margin-bottom: 44px;
+      margin-bottom: 32px;
     }
     .trial-trust-wrap::before {
       content: '';
@@ -684,14 +684,14 @@
     /* ── PRODUCT SECTION ── */
     .product-section {
       background: #fff;
-      padding: 100px 40px 80px;
+      padding: 80px 40px;
       position: relative;
       overflow: hidden;
     }
     .product-hero-inner {
       max-width: 1080px; margin: 0 auto; width: 100%;
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: 64px; align-items: center;
+      gap: 56px; align-items: center;
     }
     .hero-newt-bg {
       position: absolute; bottom: -20px; right: -10px;
@@ -987,7 +987,7 @@
     }
 
     /* ── COMPARISON SECTION ── */
-    .comp-section { background: #fff; padding: 100px 24px; }
+    .comp-section { background: #fff; padding: 80px 24px; }
     .comp-intro {
       text-align: center; font-size: 15px; color: var(--text-muted);
       max-width: 460px; margin: -32px auto 48px; line-height: 1.65; letter-spacing: -0.01em;
@@ -1026,7 +1026,7 @@
     .comp-table tbody tr:hover td.comp-newt-col { background: rgba(240,224,48,0.09); }
 
     /* ── FAQ ── */
-    .faq-section { background: var(--cream); padding: 100px 24px; }
+    .faq-section { background: var(--cream); padding: 80px 24px; }
     .faq-list { display: flex; flex-direction: column; }
     details.faq-item { border-bottom: 1px solid rgba(26,26,26,0.08); }
     details.faq-item:first-child { border-top: 1px solid rgba(26,26,26,0.08); }
@@ -1115,16 +1115,16 @@
       .hero-ctas .btn-fill, .hero-ctas .btn-ghost { min-height: 48px; }
       .hero-watermark { display: none; }
       .hero-product-img { width: 64px; }
-      .s-cream, .s-white, .s-dark { padding: 72px 20px; }
-      .product-section { padding: 72px 20px; }
-      .comp-section { padding: 72px 0 72px; }
+      .s-cream, .s-white, .s-dark { padding: 56px 20px; }
+      .product-section { padding: 56px 20px; }
+      .comp-section { padding: 56px 0; }
       .comp-table-wrap { padding: 0 20px; }
-      .faq-section { padding: 72px 20px; }
+      .faq-section { padding: 56px 20px; }
       .benefit-dark-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
       .product-tagline { max-width: 100%; }
-      .social-section { padding: 72px 20px; }
-      .trial-section { padding: 80px 20px 72px; }
-      .section-heading { margin-bottom: 36px; }
+      .social-section { padding: 56px 20px; }
+      .trial-section { padding: 64px 20px 56px; }
+      .section-heading { margin-bottom: 28px; }
       .ingr-groups { grid-template-columns: 1fr; }
       .trial-perks { gap: 36px; }
       footer { padding: 28px 20px; }
@@ -1228,13 +1228,13 @@
     }
 
     /* ── SOCIAL PROOF ── */
-    .social-section { background: #fff; padding: 90px 24px; }
+    .social-section { background: #fff; padding: 80px 24px; }
     .social-rating-row {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 12px;
-      margin-bottom: 52px;
+      margin-bottom: 36px;
     }
     .social-stars { display: flex; gap: 3px; align-items: center; }
     .social-star { width: 16px; height: 16px; color: var(--yellow); fill: var(--yellow); }
@@ -1248,7 +1248,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 16px;
-      margin-bottom: 64px;
+      margin-bottom: 48px;
     }
     .testimonial-card {
       background: var(--cream);
@@ -1289,7 +1289,7 @@
     .social-stats-row {
       display: flex;
       justify-content: center;
-      gap: 72px;
+      gap: 56px;
       flex-wrap: wrap;
     }
     .social-stat { text-align: center; }
@@ -1521,6 +1521,56 @@
       margin-left: 3px;
       position: relative; top: 2px;
       flex-shrink: 0;
+    }
+
+    /* ── TRIAL HEADING + PRICING ── */
+    .trial-section-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(240,224,48,0.09); border: 1px solid rgba(240,224,48,0.2);
+      color: var(--yellow); font-size: 11px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 7px 16px; border-radius: 980px; margin-bottom: 24px;
+    }
+    .trial-heading {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(38px, 5.5vw, 60px);
+      font-weight: 700; line-height: 1.06;
+      letter-spacing: -0.03em; color: #fff;
+      margin-bottom: 32px;
+    }
+    .trial-heading em {
+      font-style: italic; color: var(--yellow);
+    }
+    .trial-price-block {
+      margin: 0 auto 40px;
+      display: inline-flex; flex-direction: column;
+      align-items: center; gap: 8px;
+    }
+    .trial-price-top {
+      display: flex; align-items: baseline; gap: 4px;
+    }
+    .trial-price-amount {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(56px, 8vw, 88px);
+      font-weight: 700; color: var(--yellow);
+      letter-spacing: -0.04em; line-height: 1;
+    }
+    .trial-price-per {
+      font-size: 20px; font-weight: 400;
+      color: rgba(240,224,48,0.5); letter-spacing: -0.01em;
+      margin-left: 4px; align-self: flex-end; margin-bottom: 6px;
+    }
+    .trial-price-meta {
+      font-size: 12px; font-weight: 500;
+      color: rgba(255,255,255,0.28); letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .trial-price-free-note {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(45,138,78,0.12); border: 1px solid rgba(45,138,78,0.25);
+      color: #5cb87a; font-size: 11px; font-weight: 600;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 980px;
     }
 
     /* ── REVEAL ANIMATIONS ── */
@@ -1816,7 +1866,7 @@
             <div class="sub-divider"></div>
             <div class="sub-row">
               <span class="sub-row-label">After Day 7</span>
-              <span class="sub-row-value">$XX &nbsp;/&nbsp; 21-Day Supply</span>
+              <span class="sub-row-value">$49.99 &nbsp;/&nbsp; 21-Day Supply</span>
             </div>
             <div class="sub-row">
               <span class="sub-row-label">Recurring Billing</span>
@@ -1829,7 +1879,7 @@
           </div>
           <label class="sub-check-wrap" for="termCheckHero">
             <input type="checkbox" id="termCheckHero">
-            <span class="sub-check-text">I understand I will be billed $XX every 3 weeks after my 7-day free trial ends. I can cancel anytime.</span>
+            <span class="sub-check-text">I understand I will be billed $49.99 every 3 weeks after my 7-day free trial ends. I can cancel anytime.</span>
           </label>
           <button class="sub-cta-btn" id="heroCta" data-trial disabled>Start Your Free Trial</button>
           <p class="sub-footnote">Free shipping · Cancel anytime · No hidden fees</p>
@@ -1922,18 +1972,22 @@
   <section id="trial" class="trial-section">
     <div class="container" style="position:relative;z-index:1;text-align:center;">
 
-      <!-- Email capture with logo above -->
-      <div class="email-capture reveal">
-        <a href="#" class="pre-trial-logo-link" style="display:inline-flex;margin-bottom:20px;">newt<span class="pre-trial-dot"></span></a>
-        <p class="email-capture-label">New flavors, research & exclusive offers</p>
-        <div class="email-form">
-          <input type="email" class="email-input" placeholder="your@email.com">
-          <button class="email-btn">Notify Me</button>
+      <!-- Badge + Heading -->
+      <div class="trial-section-badge reveal">✦ &nbsp;No Risk Offer</div>
+      <h2 class="trial-heading reveal reveal-delay-1">Start your free<br><em>7 day trial.</em></h2>
+
+      <!-- Pricing block -->
+      <div class="trial-price-block reveal reveal-delay-1">
+        <div class="trial-price-top">
+          <span class="trial-price-amount">$49.99</span>
+          <span class="trial-price-per">/ box</span>
         </div>
+        <p class="trial-price-meta">21 servings &nbsp;·&nbsp; ships free &nbsp;·&nbsp; billed every 3 weeks</p>
+        <span class="trial-price-free-note">✓ &nbsp;First box is free — no charge today</span>
       </div>
 
-      <!-- 4. Trust chips -->
-      <div class="trial-trust-wrap reveal reveal-delay-1">
+      <!-- Trust chips -->
+      <div class="trial-trust-wrap reveal reveal-delay-2">
         <div class="trial-trust">
           <div class="trust-chip">
             <span class="trust-check"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3.5 6L8 1" stroke="#0A0A0A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -1950,8 +2004,19 @@
         </div>
       </div>
 
-      <button class="btn-fill btn-fill-yellow reveal reveal-delay-2" data-trial style="font-size:16px;padding:15px 52px;border:none;cursor:pointer;font-family:'Inter',system-ui,sans-serif;">Start Your Free Trial</button>
-      <p class="trial-disclaimer">After trial, auto enrolls in 21 day trial. Cancel anytime.</p>
+      <button class="btn-fill btn-fill-yellow reveal reveal-delay-3" data-trial style="font-size:16px;padding:15px 52px;border:none;cursor:pointer;font-family:'Inter',system-ui,sans-serif;">Start Your Free Trial</button>
+      <p class="trial-disclaimer">After trial, auto enrolls in a 21-day subscription at $49.99. Cancel anytime.</p>
+
+      <!-- Email capture -->
+      <div class="email-capture reveal" style="margin-top:52px;padding-top:40px;border-top:1px solid rgba(255,255,255,0.06);">
+        <a href="#" class="pre-trial-logo-link" style="display:inline-flex;margin-bottom:16px;font-size:38px;">newt<span class="pre-trial-dot" style="width:10px;height:10px;"></span></a>
+        <p class="email-capture-label">New flavors, research & exclusive offers</p>
+        <div class="email-form">
+          <input type="email" class="email-input" placeholder="your@email.com">
+          <button class="email-btn">Notify Me</button>
+        </div>
+      </div>
+
     </div>
   </section>
 
