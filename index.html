@@ -606,6 +606,7 @@
     .trust-chip:nth-child(1) { animation: chipReveal 0.55s cubic-bezier(0.22,1,0.36,1) 0.08s forwards; }
     .trust-chip:nth-child(2) { animation: chipReveal 0.55s cubic-bezier(0.22,1,0.36,1) 0.2s  forwards; }
     .trust-chip:nth-child(3) { animation: chipReveal 0.55s cubic-bezier(0.22,1,0.36,1) 0.32s forwards; }
+    .trust-chip:nth-child(4) { animation: chipReveal 0.55s cubic-bezier(0.22,1,0.36,1) 0.44s forwards; }
     .trust-chip:hover {
       background: rgba(240,224,48,0.11);
       border-color: rgba(240,224,48,0.45);
@@ -1573,6 +1574,89 @@
       padding: 5px 14px; border-radius: 980px;
     }
 
+    /* ── HERO SOCIAL PROOF ── */
+    .hero-microcopy {
+      font-size: 12px;
+      color: var(--text-dim);
+      letter-spacing: -0.01em;
+      margin-top: 10px;
+    }
+    .hero-social-proof {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+    .hero-sp-divider {
+      width: 1px; height: 14px;
+      background: rgba(26,26,26,0.18);
+      flex-shrink: 0;
+    }
+    .hero-sp-stars {
+      display: flex; gap: 2px; align-items: center;
+    }
+    .hero-sp-star {
+      width: 12px; height: 12px;
+      color: var(--yellow); fill: var(--yellow);
+    }
+    .hero-sp-text {
+      font-size: 12px; font-weight: 400;
+      color: var(--text-muted); letter-spacing: -0.01em;
+    }
+    @media (max-width: 768px) {
+      .hero-social-proof { justify-content: center; }
+    }
+
+    /* ── WHY NEWT WORKS ── */
+    .why-section { background: var(--cream); padding: 80px 24px; border-top: 1px solid rgba(26,26,26,0.06); }
+    .why-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .why-heading {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(30px, 3.8vw, 46px);
+      font-weight: 700; line-height: 1.1;
+      letter-spacing: -0.03em; color: var(--near-black);
+      margin-bottom: 14px;
+    }
+    .why-sub {
+      font-size: 15px; color: var(--text-muted);
+      line-height: 1.65; letter-spacing: -0.01em;
+    }
+    .why-list { display: flex; flex-direction: column; gap: 18px; }
+    .why-item {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 16px 20px;
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid rgba(26,26,26,0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .why-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(26,26,26,0.07);
+    }
+    .why-check-icon {
+      width: 22px; height: 22px; flex-shrink: 0; margin-top: 1px;
+      background: var(--yellow); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .why-item-title {
+      font-size: 14px; font-weight: 600; color: var(--near-black);
+      letter-spacing: -0.01em; margin-bottom: 2px; line-height: 1.3;
+    }
+    .why-item-sub {
+      font-size: 12.5px; color: var(--text-muted);
+      letter-spacing: -0.01em; line-height: 1.55;
+    }
+    @media (max-width: 860px) {
+      .why-inner { grid-template-columns: 1fr; gap: 36px; }
+    }
+
     /* ── REVEAL ANIMATIONS ── */
     .reveal {
       opacity: 0;
@@ -1637,10 +1721,25 @@
       <div class="hero-text">
         <p class="hero-eyebrow reveal hero-reveal">Nootropics &nbsp;·&nbsp; Lemon Lime &nbsp;·&nbsp; 8.5g Per Serving</p>
         <h1 class="hero-headline reveal hero-reveal">Fix Your<br><em>Focus.</em></h1>
-        <p class="hero-sub reveal hero-reveal">A premium cognitive boost. Enhancing mental clarity and all day performance.</p>
+        <p class="hero-sub reveal hero-reveal">Clinically dosed for all-day energy and clarity.</p>
         <div class="hero-ctas reveal hero-reveal">
-          <a href="#" class="btn-fill btn-fill-yellow" data-trial>Start Your Free Trial</a>
-          <a href="#benefits" class="btn-ghost">Learn More</a>
+          <a href="#" class="btn-fill btn-fill-yellow" data-trial>Try 7 Days Free</a>
+          <a href="#comparison" class="btn-ghost">See How It Compares</a>
+        </div>
+        <p class="hero-microcopy reveal hero-reveal">No card required &nbsp;·&nbsp; Cancel anytime</p>
+        <div class="hero-social-proof reveal hero-reveal">
+          <div class="hero-sp-stars">
+            <svg class="hero-sp-star" viewBox="0 0 16 16"><path d="M8 1l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 10.7l-3.8 2.1.7-4.3-3.1-3 4.3-.6z"/></svg>
+            <svg class="hero-sp-star" viewBox="0 0 16 16"><path d="M8 1l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 10.7l-3.8 2.1.7-4.3-3.1-3 4.3-.6z"/></svg>
+            <svg class="hero-sp-star" viewBox="0 0 16 16"><path d="M8 1l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 10.7l-3.8 2.1.7-4.3-3.1-3 4.3-.6z"/></svg>
+            <svg class="hero-sp-star" viewBox="0 0 16 16"><path d="M8 1l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 10.7l-3.8 2.1.7-4.3-3.1-3 4.3-.6z"/></svg>
+            <svg class="hero-sp-star" viewBox="0 0 16 16"><path d="M8 1l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 10.7l-3.8 2.1.7-4.3-3.1-3 4.3-.6z"/></svg>
+          </div>
+          <span class="hero-sp-text">4.9/5 stars</span>
+          <div class="hero-sp-divider"></div>
+          <span class="hero-sp-text">Trusted by 5,000+ users</span>
+          <div class="hero-sp-divider"></div>
+          <span class="hero-sp-text">30-day money-back guarantee</span>
         </div>
       </div>
       <div class="hero-visual reveal hero-reveal">
@@ -1763,7 +1862,7 @@
   </section>
 
   <!-- ── COMPARISON ── -->
-  <section class="comp-section">
+  <section id="comparison" class="comp-section">
     <div class="container">
       <p class="section-label section-label-dark reveal">How We Stack Up</p>
       <h2 class="section-heading section-heading-dark reveal reveal-delay-1">Why choose<br>newt?</h2>
@@ -1968,6 +2067,52 @@
     </div>
   </section>
 
+  <!-- ── WHY NEWT WORKS ── -->
+  <section class="why-section">
+    <div class="container">
+      <div class="why-inner">
+
+        <div class="why-text-col">
+          <p class="section-label section-label-dark reveal">The Difference</p>
+          <h2 class="why-heading reveal reveal-delay-1">Why Newt works<br>when others don't.</h2>
+          <p class="why-sub reveal reveal-delay-1">Coffee spikes and crashes. Energy drinks wire you up. Newt is engineered to last — clean fuel from the first sip to the last hour.</p>
+        </div>
+
+        <div class="why-list">
+          <div class="why-item reveal">
+            <span class="why-check-icon"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.8 7L9 1" stroke="#0A0A0A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div>
+              <p class="why-item-title">5–7 hours of sustained focus</p>
+              <p class="why-item-sub">vs. coffee's 2–4 hours — no crash, no jitters</p>
+            </div>
+          </div>
+          <div class="why-item reveal reveal-delay-1">
+            <span class="why-check-icon"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.8 7L9 1" stroke="#0A0A0A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div>
+              <p class="why-item-title">Zero jitters or afternoon crash</p>
+              <p class="why-item-sub">L-Theanine smooths the caffeine for clean, calm energy</p>
+            </div>
+          </div>
+          <div class="why-item reveal reveal-delay-2">
+            <span class="why-check-icon"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.8 7L9 1" stroke="#0A0A0A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div>
+              <p class="why-item-title">Clinically dosed ingredients</p>
+              <p class="why-item-sub">Full doses of every compound — no proprietary blends, no underdosing</p>
+            </div>
+          </div>
+          <div class="why-item reveal reveal-delay-3">
+            <span class="why-check-icon"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.8 7L9 1" stroke="#0A0A0A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div>
+              <p class="why-item-title">30-day money-back guarantee</p>
+              <p class="why-item-sub">Try it risk-free — if it doesn't work for you, we'll make it right</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ── TRIAL ── -->
   <section id="trial" class="trial-section">
     <div class="container" style="position:relative;z-index:1;text-align:center;">
@@ -2001,11 +2146,15 @@
             <span class="trust-check"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3.5 6L8 1" stroke="#0A0A0A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             No Commitment
           </div>
+          <div class="trust-chip">
+            <span class="trust-check"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3.5 6L8 1" stroke="#0A0A0A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            30-Day Guarantee
+          </div>
         </div>
       </div>
 
-      <button class="btn-fill btn-fill-yellow reveal reveal-delay-3" data-trial style="font-size:16px;padding:15px 52px;border:none;cursor:pointer;font-family:'Inter',system-ui,sans-serif;">Start Your Free Trial</button>
-      <p class="trial-disclaimer">After trial, auto enrolls in a 21-day subscription at $49.99. Cancel anytime.</p>
+      <button class="btn-fill btn-fill-yellow reveal reveal-delay-3" data-trial style="font-size:16px;padding:15px 52px;border:none;cursor:pointer;font-family:'Inter',system-ui,sans-serif;">Try 7 Days Free</button>
+      <p class="trial-disclaimer">No commitment. Cancel anytime, even during your trial.<br>After day 7, auto-enrolls at $49.99 / 21-day supply.</p>
 
       <!-- Email capture -->
       <div class="email-capture reveal" style="margin-top:52px;padding-top:40px;border-top:1px solid rgba(255,255,255,0.06);">
