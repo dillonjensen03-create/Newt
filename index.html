@@ -1100,43 +1100,128 @@
       .benefits-grid { grid-template-columns: repeat(2, 1fr); }
       .benefit-dark-grid { grid-template-columns: repeat(2, 1fr); }
       .unified-grid { grid-template-columns: 1fr; gap: 12px; }
-      .product-hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .product-hero-inner { grid-template-columns: 1fr; gap: 36px; }
       .product-image-col { order: -1; }
       .product-img { width: 120px; }
+      .why-inner { grid-template-columns: 1fr; gap: 36px; }
     }
     @media (max-width: 768px) {
-      nav { padding: 0 24px; }
+      /* NAV */
+      nav { padding: 0 20px; }
       .nav-links, .nav-cta { display: none; }
-      .nav-hamburger { display: flex; }
-      .hero { padding: 90px 20px 56px; }
-      .hero-inner { flex-direction: column; gap: 40px; text-align: center; }
+      .nav-hamburger { display: flex; width: 44px; height: 44px; align-items: center; justify-content: center; margin: -4px -6px -4px 0; }
+
+      /* HERO */
+      .hero { padding: 72px 20px 52px; }
+      .hero-inner { flex-direction: column; gap: 28px; text-align: center; }
+      .hero-visual { order: -1; }
       .hero-text { text-align: center; }
-      .hero-sub { margin-left: auto; margin-right: auto; }
-      .hero-ctas { justify-content: center; }
-      .hero-ctas .btn-fill, .hero-ctas .btn-ghost { min-height: 48px; }
+      .hero-eyebrow { margin-bottom: 12px; }
+      .hero-headline { font-size: clamp(38px, 11vw, 56px); margin-bottom: 12px; }
+      .hero-sub { font-size: 16px; max-width: 100%; margin: 0 auto 24px; }
+      .hero-product-img { width: 88px; }
       .hero-watermark { display: none; }
-      .hero-product-img { width: 64px; }
+      .hero-ctas { flex-direction: column; align-items: stretch; gap: 10px; }
+      .hero-ctas .btn-fill,
+      .hero-ctas .btn-ghost { width: 100%; justify-content: center; min-height: 52px; font-size: 16px; padding: 14px 20px; }
+      .hero-microcopy { text-align: center; }
+      .hero-social-proof { justify-content: center; flex-wrap: wrap; gap: 6px 10px; margin-top: 20px; }
+      .hero-sp-divider { display: none; }
+      .hero-sp-text::before { content: '·'; margin-right: 6px; color: var(--text-dim); }
+      .hero-sp-stars + .hero-sp-text::before { content: ''; margin-right: 0; }
+
+      /* SECTIONS */
       .s-cream, .s-white, .s-dark { padding: 56px 20px; }
       .product-section { padding: 56px 20px; }
       .comp-section { padding: 56px 0; }
       .comp-table-wrap { padding: 0 20px; }
       .faq-section { padding: 56px 20px; }
-      .benefit-dark-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-      .product-tagline { max-width: 100%; }
       .social-section { padding: 56px 20px; }
       .trial-section { padding: 64px 20px 56px; }
+      .why-section { padding: 56px 20px; }
       .section-heading { margin-bottom: 28px; }
+
+      /* BENEFIT CARDS */
+      .benefit-dark-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .benefits-grid { grid-template-columns: 1fr; gap: 12px; }
+      .benefit-card { padding: 24px 20px 20px; }
+      .unified-card { padding: 24px 20px 20px; }
+
+      /* PRODUCT SECTION */
+      .product-tagline { max-width: 100%; }
+      .product-img { width: 100px; }
+      .product-name { font-size: clamp(34px, 9vw, 48px); }
+      .sub-card { padding: 24px 20px 20px; }
+
+      /* COMPARISON TABLE */
+      .comp-table td, .comp-table th { padding: 11px 12px; font-size: 12px; }
+      .comp-table-wrap { position: relative; }
+      .comp-table-wrap::after {
+        content: 'Scroll →';
+        position: absolute;
+        right: 20px;
+        bottom: -22px;
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--text-dim);
+        letter-spacing: 0.04em;
+        pointer-events: none;
+      }
+
+      /* SOCIAL PROOF */
+      .testimonials-grid { grid-template-columns: 1fr; gap: 12px; }
+      .social-rating-row { margin-bottom: 28px; }
+      .social-stats-row { gap: 28px; }
+      .social-stat-num { font-size: 38px; }
+      .testimonials-grid { margin-bottom: 36px; }
+      .t-quote { font-size: 15px; line-height: 1.65; }
+      .testimonial-card { padding: 24px 20px; }
+
+      /* WHY SECTION */
+      .why-inner { grid-template-columns: 1fr; gap: 28px; }
+      .why-heading { font-size: clamp(28px, 8vw, 40px); }
+      .why-sub { font-size: 15px; }
+      .why-item { padding: 14px 16px; }
+
+      /* TRIAL */
+      .trial-heading { font-size: clamp(34px, 9vw, 52px); margin-bottom: 20px; }
+      .trial-price-amount { font-size: clamp(52px, 13vw, 72px); }
+      .trial-trust { gap: 8px; justify-content: center; }
+      .trial-trust-wrap { margin-bottom: 24px; }
+      .trust-chip { font-size: 12px; padding: 9px 13px; }
+      .trial-price-block { margin-bottom: 28px; }
+      .trial-section .btn-fill { width: 100%; max-width: 360px; font-size: 17px; padding: 16px 24px; }
+      .trial-disclaimer { font-size: 12px; margin-top: 14px; }
+
+      /* FAQ */
+      summary.faq-q { padding: 18px 0; font-size: 16px; min-height: 52px; display: flex; align-items: center; }
+      .faq-a { font-size: 15px; line-height: 1.7; }
+
+      /* FOOTER */
+      footer { padding: 28px 20px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .footer-links { flex-direction: column; gap: 4px; align-items: flex-start; }
+      .footer-links a,
+      .footer-community-btn { min-height: 40px; display: flex; align-items: center; font-size: 13px; }
+      .footer-trust { gap: 16px; flex-direction: column; align-items: flex-start; padding-bottom: 16px; margin-bottom: 16px; }
+
+      /* MISC */
       .ingr-groups { grid-template-columns: 1fr; }
       .trial-perks { gap: 36px; }
-      footer { padding: 28px 20px; }
-      .footer-inner { flex-direction: column; align-items: flex-start; }
-      .trust-chip { font-size: 12px; padding: 9px 14px; }
+      .email-capture { max-width: 100%; }
+      .email-form { flex-direction: column; gap: 10px; }
+      .email-input { padding: 14px 18px; font-size: 16px; }
+      .email-btn { width: 100%; justify-content: center; min-height: 48px; font-size: 15px; }
+      .modal { padding: 36px 24px 28px; }
     }
     @media (max-width: 480px) {
-      .benefits-grid { grid-template-columns: 1fr; }
-      .hero-product-img { width: 60px; }
-      .email-form { flex-direction: column; gap: 10px; }
-      .email-btn { width: 100%; justify-content: center; min-height: 48px; }
+      .hero-product-img { width: 76px; }
+      .hero-ctas .btn-fill,
+      .hero-ctas .btn-ghost { font-size: 15px; }
+      .benefit-dark-grid { grid-template-columns: 1fr; }
+      .social-stats-row { flex-direction: column; gap: 20px; align-items: center; }
+      .trust-chip { font-size: 11px; padding: 8px 11px; }
+      .modal { padding: 28px 20px 24px; }
     }
 
     a:focus-visible, button:focus-visible {
@@ -1202,6 +1287,8 @@
 
     /* ── HERO PRODUCT GLOW ── */
     .hero-product-img { width: 126px; }
+    @media (max-width: 768px) { .hero-product-img { width: 88px; } }
+    @media (max-width: 480px) { .hero-product-img { width: 76px; } }
     .hero-visual {
       position: relative;
     }
@@ -1496,11 +1583,7 @@
       letter-spacing: -0.01em; line-height: 1.6;
     }
 
-    @media (max-width: 768px) {
-      .testimonials-grid { grid-template-columns: 1fr; }
-      .social-stats-row { gap: 36px; }
-      .email-form { flex-direction: column; }
-    }
+    /* (social/email mobile overrides consolidated into main @media block above) */
 
     /* ── PRE-TRIAL LOGO ── */
     .pre-trial-logo-link {
@@ -1657,6 +1740,21 @@
       .why-inner { grid-template-columns: 1fr; gap: 36px; }
     }
 
+    /* ── TOUCH DEVICE: disable hover transforms ── */
+    @media (hover: none) {
+      .benefit-card:hover,
+      .ingr-group:hover,
+      .unified-card:hover,
+      .testimonial-card:hover,
+      .why-item:hover { transform: none; box-shadow: none; }
+      .btn-fill:hover,
+      .btn-ghost:hover,
+      .nav-cta:hover,
+      .sub-cta-btn:hover:not(:disabled),
+      .email-btn:hover,
+      .trust-chip:hover { transform: none; }
+    }
+
     /* ── REVEAL ANIMATIONS ── */
     .reveal {
       opacity: 0;
@@ -1670,6 +1768,25 @@
     .reveal-delay-3 { transition-delay: 0.36s; }
     @media (prefers-reduced-motion: reduce) {
       .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+    }
+
+    /* ── FINAL MOBILE OVERRIDES (after all component CSS) ── */
+    @media (max-width: 768px) {
+      .testimonials-grid { grid-template-columns: 1fr; gap: 12px; margin-bottom: 36px; }
+      .social-stats-row { gap: 28px; }
+      .social-rating-row { flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+      .email-capture { max-width: 100%; }
+      .email-form { flex-direction: column; gap: 10px; }
+      .email-input { padding: 14px 18px; font-size: 16px; }
+      .email-btn { width: 100%; min-height: 48px; font-size: 15px; }
+      .footer-links { flex-direction: column; gap: 4px; align-items: flex-start; }
+      .footer-links a, .footer-community-btn { min-height: 40px; display: flex; align-items: center; }
+      .footer-trust { flex-direction: column; align-items: flex-start; gap: 14px; }
+      .pre-trial-logo-link { font-size: 36px; }
+    }
+    @media (max-width: 480px) {
+      .testimonials-grid { gap: 10px; }
+      .social-stats-row { flex-direction: column; gap: 20px; align-items: center; }
     }
   </style>
 </head>
