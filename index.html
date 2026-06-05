@@ -2094,6 +2094,131 @@
       100% { transform: scale(1); }
     }
     .cart-added { animation: cartPulse 0.35s cubic-bezier(0.34,1.56,0.64,1); }
+
+    /* ── THREE-TIER PACK GRID ── */
+    .pack-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    @media (max-width: 860px) {
+      .pack-grid { grid-template-columns: 1fr; max-width: 440px; }
+    }
+
+    .pack-card {
+      background: #fff;
+      border: 1.5px solid rgba(26,26,26,0.1);
+      border-radius: 16px;
+      padding: 28px 20px 20px;
+      display: flex; flex-direction: column;
+      position: relative;
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+    .pack-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.1); transform: translateY(-2px); }
+    .pack-card--popular {
+      border-color: var(--yellow);
+      box-shadow: 0 4px 24px rgba(240,224,48,0.2);
+    }
+    .pack-card--value { border-color: rgba(240,224,48,0.55); }
+
+    .pack-card-badge {
+      position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+      background: var(--yellow); color: var(--black);
+      font-size: 10px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 4px 14px; border-radius: 980px; white-space: nowrap;
+    }
+    .pack-card-header { margin-bottom: 14px; }
+    .pack-card-servings {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 4px;
+    }
+    .pack-card-name {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 20px; font-weight: 700; letter-spacing: -0.02em;
+      color: var(--near-black); margin: 0; line-height: 1.1;
+    }
+
+    .pack-card-options {
+      display: flex; flex-direction: column; gap: 8px;
+      margin-bottom: 16px; flex: 1;
+    }
+    .pack-purchase-row {
+      display: flex; align-items: flex-start; gap: 10px;
+      border: 1.5px solid rgba(26,26,26,0.09);
+      border-radius: 10px; padding: 11px 12px;
+      cursor: pointer;
+      transition: border-color 0.18s ease, background 0.18s ease;
+    }
+    .pack-purchase-row:has(input:checked) {
+      border-color: var(--yellow);
+      background: rgba(240,224,48,0.07);
+    }
+    .pack-purchase-row input[type="radio"] {
+      width: 15px; height: 15px; flex-shrink: 0; margin-top: 3px;
+      accent-color: var(--near-black); cursor: pointer;
+    }
+    .pack-purchase-content { flex: 1; min-width: 0; }
+    .pack-purchase-top {
+      display: flex; align-items: center; gap: 6px; margin-bottom: 3px; flex-wrap: wrap;
+    }
+    .pack-purchase-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .pack-purchase-price {
+      font-size: 20px; font-weight: 800; letter-spacing: -0.03em;
+      color: var(--near-black); line-height: 1;
+    }
+    .pack-purchase-period {
+      font-size: 12px; font-weight: 500; color: var(--text-muted); letter-spacing: 0;
+    }
+    .pack-purchase-note {
+      font-size: 10.5px; color: var(--text-dim); margin-top: 3px; letter-spacing: -0.01em;
+    }
+    .pack-save-badge {
+      display: inline-flex; align-items: center;
+      background: rgba(34,197,94,0.12); color: #15803d;
+      font-size: 9.5px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase;
+      padding: 2px 7px; border-radius: 980px; white-space: nowrap;
+    }
+
+    .pack-card-cta {
+      width: 100%; padding: 13px;
+      background: var(--yellow); color: var(--black);
+      font-size: 14px; font-weight: 700; letter-spacing: -0.01em;
+      border: none; border-radius: 980px; cursor: pointer;
+      font-family: 'Inter', system-ui, sans-serif;
+      box-shadow: 0 2px 12px rgba(240,224,48,0.3);
+      transition: background 0.18s ease, transform 0.15s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.18s ease;
+      margin-top: auto;
+    }
+    .pack-card-cta:hover { background: var(--yellow-hover); transform: translateY(-1px) scale(1.02); box-shadow: 0 6px 20px rgba(240,224,48,0.4); }
+    .pack-card-cta:active { transform: scale(0.97); }
+
+    /* Sub-card teaser (hero) */
+    .sub-pack-list {
+      display: flex; flex-direction: column; gap: 0;
+      margin-bottom: 16px;
+      border: 1px solid rgba(26,26,26,0.08); border-radius: 12px; overflow: hidden;
+    }
+    .sub-pack-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 11px 14px;
+      border-bottom: 1px solid rgba(26,26,26,0.06);
+      gap: 8px;
+    }
+    .sub-pack-row:last-child { border-bottom: none; }
+    .sub-pack-row-left { display: flex; align-items: center; gap: 8px; }
+    .sub-pack-row-name { font-size: 13px; font-weight: 600; color: var(--near-black); letter-spacing: -0.01em; }
+    .sub-pack-row-price { font-size: 13px; font-weight: 700; color: var(--near-black); letter-spacing: -0.02em; }
+    .sub-pack-row-price span { font-size: 11px; font-weight: 400; color: var(--text-muted); }
+    .sub-pack-popular-pip {
+      background: var(--yellow); color: var(--black);
+      font-size: 8.5px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 2px 7px; border-radius: 980px;
+    }
   </style>
 </head>
 <body>
@@ -2384,25 +2509,30 @@
 
         <div class="sub-card">
           <div class="sub-badge">✦ &nbsp;Pick Your Pack</div>
-          <p class="pack-selector-heading">Start today.<br>Ship tomorrow.</p>
-          <div class="pack-options">
-            <button class="pack-option" data-add-to-cart data-variant="53492076019991">
-              <span class="pack-count">14 servings</span>
-              <span class="pack-name">14 Stick Pack</span>
-              <span class="pack-price">$35</span>
-              <span class="pack-shipping">includes shipping</span>
-              <span class="pack-btn">Add to Cart</span>
-            </button>
-            <button class="pack-option highlighted" data-add-to-cart data-variant="53492080804119">
-              <span class="pack-best-badge">Best Value</span>
-              <span class="pack-count">30 servings</span>
-              <span class="pack-name">30 Stick Pack</span>
-              <span class="pack-price">$59</span>
-              <span class="pack-shipping">includes shipping</span>
-              <span class="pack-btn pack-btn-yellow">Add to Cart</span>
-            </button>
+          <p class="pack-selector-heading">Start today.<br>Subscribe &amp; save.</p>
+          <div class="sub-pack-list">
+            <div class="sub-pack-row">
+              <div class="sub-pack-row-left">
+                <span class="sub-pack-row-name">7 Stick Pack</span>
+              </div>
+              <span class="sub-pack-row-price">$18<span>/mo</span></span>
+            </div>
+            <div class="sub-pack-row">
+              <div class="sub-pack-row-left">
+                <span class="sub-pack-popular-pip">Popular</span>
+                <span class="sub-pack-row-name">14 Stick Pack</span>
+              </div>
+              <span class="sub-pack-row-price">$35<span>/mo</span></span>
+            </div>
+            <div class="sub-pack-row">
+              <div class="sub-pack-row-left">
+                <span class="sub-pack-row-name">30 Stick Pack</span>
+              </div>
+              <span class="sub-pack-row-price">$59<span>/mo</span></span>
+            </div>
           </div>
-          <p class="pack-trust-bar">Free Shipping · 30-Day Guarantee · No Hidden Fees · Ships in 1–2 Days</p>
+          <a href="#trial" class="sub-cta-btn" style="display:block;text-align:center;text-decoration:none;color:var(--black);">Choose Your Pack →</a>
+          <p class="sub-footnote">Free shipping · Subscribe &amp; save · Cancel anytime</p>
         </div>
       </div>
 
@@ -2540,25 +2670,106 @@
 
       <!-- Heading -->
       <h2 class="trial-pack-heading reveal">Pick your pack.<br><em>Start today.</em></h2>
-      <p class="trial-pack-sub reveal reveal-delay-1">One-time purchase. No subscriptions. Free shipping.</p>
+      <p class="trial-pack-sub reveal reveal-delay-1">Subscribe &amp; save. Pause, cancel, or skip anytime.</p>
 
-      <!-- Pack options -->
-      <div class="trial-pack-options reveal reveal-delay-2">
-        <button class="trial-pack-option" data-add-to-cart data-variant="53492076019991">
-          <span class="trial-pack-count">14 servings</span>
-          <span class="trial-pack-name">14 Stick Pack</span>
-          <span class="trial-pack-price">$35</span>
-          <span class="trial-pack-shipping">includes shipping</span>
-          <span class="trial-pack-btn">Add to Cart</span>
-        </button>
-        <button class="trial-pack-option highlighted" data-add-to-cart data-variant="53492080804119">
-          <span class="pack-best-badge">Best Value</span>
-          <span class="trial-pack-count">30 servings</span>
-          <span class="trial-pack-name">30 Stick Pack</span>
-          <span class="trial-pack-price">$59</span>
-          <span class="trial-pack-shipping">includes shipping</span>
-          <span class="trial-pack-btn yellow">Add to Cart</span>
-        </button>
+      <!-- 3-card pack grid -->
+      <div class="pack-grid reveal reveal-delay-2">
+
+        <!-- 7 Stick Pack -->
+        <div class="pack-card">
+          <div class="pack-card-header">
+            <p class="pack-card-servings">7 Servings</p>
+            <h3 class="pack-card-name">7 Stick Pack</h3>
+          </div>
+          <div class="pack-card-options">
+            <label class="pack-purchase-row">
+              <input type="radio" name="type-7pack" value="sub" checked>
+              <div class="pack-purchase-content">
+                <div class="pack-purchase-top">
+                  <span class="pack-purchase-label">Subscribe &amp; Save</span>
+                  <span class="pack-save-badge">Save $1</span>
+                </div>
+                <div class="pack-purchase-price">$18<span class="pack-purchase-period">/mo</span></div>
+                <p class="pack-purchase-note">Pause, cancel, or skip anytime</p>
+              </div>
+            </label>
+            <label class="pack-purchase-row">
+              <input type="radio" name="type-7pack" value="onetime">
+              <div class="pack-purchase-content">
+                <div class="pack-purchase-top">
+                  <span class="pack-purchase-label">One-Time Purchase</span>
+                </div>
+                <div class="pack-purchase-price">$19</div>
+              </div>
+            </label>
+          </div>
+          <button class="pack-card-cta" data-pack-id="7pack">Add to Cart</button>
+        </div>
+
+        <!-- 14 Stick Pack (Most Popular) -->
+        <div class="pack-card pack-card--popular">
+          <div class="pack-card-badge">Most Popular</div>
+          <div class="pack-card-header">
+            <p class="pack-card-servings">14 Servings</p>
+            <h3 class="pack-card-name">14 Stick Pack</h3>
+          </div>
+          <div class="pack-card-options">
+            <label class="pack-purchase-row">
+              <input type="radio" name="type-14pack" value="sub" checked>
+              <div class="pack-purchase-content">
+                <div class="pack-purchase-top">
+                  <span class="pack-purchase-label">Subscribe &amp; Save</span>
+                  <span class="pack-save-badge">Save $4</span>
+                </div>
+                <div class="pack-purchase-price">$35<span class="pack-purchase-period">/mo</span></div>
+                <p class="pack-purchase-note">Pause, cancel, or skip anytime</p>
+              </div>
+            </label>
+            <label class="pack-purchase-row">
+              <input type="radio" name="type-14pack" value="onetime">
+              <div class="pack-purchase-content">
+                <div class="pack-purchase-top">
+                  <span class="pack-purchase-label">One-Time Purchase</span>
+                </div>
+                <div class="pack-purchase-price">$39</div>
+              </div>
+            </label>
+          </div>
+          <button class="pack-card-cta" data-pack-id="14pack">Add to Cart</button>
+        </div>
+
+        <!-- 30 Stick Pack (Best Value) -->
+        <div class="pack-card pack-card--value">
+          <div class="pack-card-badge">Best Value</div>
+          <div class="pack-card-header">
+            <p class="pack-card-servings">30 Servings</p>
+            <h3 class="pack-card-name">30 Stick Pack</h3>
+          </div>
+          <div class="pack-card-options">
+            <label class="pack-purchase-row">
+              <input type="radio" name="type-30pack" value="sub" checked>
+              <div class="pack-purchase-content">
+                <div class="pack-purchase-top">
+                  <span class="pack-purchase-label">Subscribe &amp; Save</span>
+                  <span class="pack-save-badge">Save $6</span>
+                </div>
+                <div class="pack-purchase-price">$59<span class="pack-purchase-period">/mo</span></div>
+                <p class="pack-purchase-note">Pause, cancel, or skip anytime</p>
+              </div>
+            </label>
+            <label class="pack-purchase-row">
+              <input type="radio" name="type-30pack" value="onetime">
+              <div class="pack-purchase-content">
+                <div class="pack-purchase-top">
+                  <span class="pack-purchase-label">One-Time Purchase</span>
+                </div>
+                <div class="pack-purchase-price">$65</div>
+              </div>
+            </label>
+          </div>
+          <button class="pack-card-cta" data-pack-id="30pack">Add to Cart</button>
+        </div>
+
       </div>
 
       <p class="trial-pack-trust reveal reveal-delay-3">Free Shipping &nbsp;·&nbsp; 30-Day Guarantee &nbsp;·&nbsp; No Hidden Fees &nbsp;·&nbsp; Ships in 1–2 Days</p>
@@ -2736,10 +2947,11 @@
     signupModal.addEventListener('click', e => { if (e.target === signupModal) closeModal(); });
 
     // ── CART ──────────────────────────────────────────────────────────
-    const CART_KEY = 'newt_cart_v1';
+    const CART_KEY = 'newt_cart_v2';
     const PRODUCTS = {
-      '53492076019991': { name: '14 Stick Pack', servings: '14 servings', price: 35 },
-      '53492080804119': { name: '30 Stick Pack', servings: '30 servings', price: 59 }
+      '7pack':  { name: '7 Stick Pack',  servings: '7 servings',  subPrice: 18, price: 19, savings: 1, shopifyVariantId: null },           // TODO: add Shopify variant ID when 7-pack is live
+      '14pack': { name: '14 Stick Pack', servings: '14 servings', subPrice: 35, price: 39, savings: 4, shopifyVariantId: '53492076019991' },
+      '30pack': { name: '30 Stick Pack', servings: '30 servings', subPrice: 59, price: 65, savings: 6, shopifyVariantId: '53492080804119' }
     };
 
     function getCart() {
@@ -2748,41 +2960,47 @@
     }
     function saveCart(cart) { localStorage.setItem(CART_KEY, JSON.stringify(cart)); }
 
-    function addToCart(variantId) {
+    function addToCart(packId, isSub) {
       const cart = getCart();
-      const existing = cart.find(i => i.variantId === variantId);
-      if (existing) { existing.qty++; } else { cart.push({ variantId, qty: 1 }); }
+      const existing = cart.find(i => i.packId === packId);
+      if (existing) { existing.qty++; existing.isSub = isSub; }
+      else { cart.push({ packId, qty: 1, isSub }); }
       saveCart(cart);
       renderCart();
       openCartDrawer();
     }
-    function removeFromCart(variantId) {
-      saveCart(getCart().filter(i => i.variantId !== variantId));
+    function removeFromCart(packId) {
+      saveCart(getCart().filter(i => i.packId !== packId));
       renderCart();
     }
-    function updateQty(variantId, delta) {
+    function updateQty(packId, delta) {
       const cart = getCart();
-      const item = cart.find(i => i.variantId === variantId);
+      const item = cart.find(i => i.packId === packId);
       if (!item) return;
       item.qty = Math.max(0, item.qty + delta);
-      if (item.qty === 0) { removeFromCart(variantId); return; }
+      if (item.qty === 0) { removeFromCart(packId); return; }
       saveCart(cart);
       renderCart();
     }
     function getTotal() {
-      return getCart().reduce((s, i) => s + (PRODUCTS[i.variantId]?.price || 0) * i.qty, 0);
+      return getCart().reduce((s, i) => {
+        const p = PRODUCTS[i.packId];
+        return s + ((i.isSub ? p.subPrice : p.price) || 0) * i.qty;
+      }, 0);
     }
     function getItemCount() { return getCart().reduce((s, i) => s + i.qty, 0); }
 
     function getCheckoutUrl() {
-      const items = getCart().map(i => `${i.variantId}:${i.qty}`).join(',');
+      const cart = getCart();
+      const checkoutItems = cart.filter(i => PRODUCTS[i.packId]?.shopifyVariantId);
+      if (!checkoutItems.length) return 'https://newt-9643.myshopify.com';
+      const items = checkoutItems.map(i => `${PRODUCTS[i.packId].shopifyVariantId}:${i.qty}`).join(',');
       return `https://newt-9643.myshopify.com/cart/${items}`;
     }
 
     function renderCart() {
       const cart = getCart();
       const count = getItemCount();
-      const total = getTotal();
       const cartItems = document.getElementById('cartItems');
       const cartEmptyState = document.getElementById('cartEmptyState');
       const cartFooter = document.getElementById('cartFooter');
@@ -2791,7 +3009,6 @@
       const navCartCount = document.getElementById('navCartCount');
       const cartCheckoutBtn = document.getElementById('cartCheckoutBtn');
 
-      // Update counts
       cartHeaderCount.textContent = count;
       navCartCount.textContent = count;
       navCartCount.classList.toggle('visible', count > 0);
@@ -2805,25 +3022,29 @@
 
       cartEmptyState.style.display = 'none';
       cartFooter.style.display = 'block';
-      cartTotal.textContent = '$' + total;
+      cartTotal.textContent = '$' + getTotal();
       cartCheckoutBtn.href = getCheckoutUrl();
 
       cartItems.innerHTML = cart.map(item => {
-        const p = PRODUCTS[item.variantId];
+        const p = PRODUCTS[item.packId];
         if (!p) return '';
+        const itemPrice = (item.isSub ? p.subPrice : p.price) * item.qty;
+        const typeLabel = item.isSub
+          ? `<span style="display:inline-block;background:rgba(34,197,94,0.12);color:#15803d;font-size:9px;font-weight:800;letter-spacing:0.05em;text-transform:uppercase;padding:1px 6px;border-radius:980px;margin-left:4px;">Subscribe</span>`
+          : '';
         return `
           <div class="cart-item">
             <div class="cart-item-icon">🦎</div>
             <div class="cart-item-info">
-              <p class="cart-item-name">${p.name}</p>
-              <p class="cart-item-sub">${p.servings} · includes shipping</p>
+              <p class="cart-item-name">${p.name}${typeLabel}</p>
+              <p class="cart-item-sub">${p.servings} · ${item.isSub ? 'monthly' : 'one-time'}</p>
               <div class="cart-qty-row">
-                <button class="cart-qty-btn" onclick="updateQty('${item.variantId}',-1)" aria-label="Remove one">−</button>
+                <button class="cart-qty-btn" onclick="updateQty('${item.packId}',-1)" aria-label="Remove one">−</button>
                 <span class="cart-qty-num">${item.qty}</span>
-                <button class="cart-qty-btn" onclick="updateQty('${item.variantId}',1)" aria-label="Add one">+</button>
+                <button class="cart-qty-btn" onclick="updateQty('${item.packId}',1)" aria-label="Add one">+</button>
               </div>
             </div>
-            <span class="cart-item-price">$${p.price * item.qty}</span>
+            <span class="cart-item-price">$${itemPrice}</span>
           </div>`;
       }).join('');
     }
@@ -2839,15 +3060,18 @@
       document.body.style.overflow = '';
     }
 
-    // Add to cart buttons
-    document.querySelectorAll('[data-add-to-cart]').forEach(btn => {
+    // Add to cart — reads the radio selection inside the card
+    document.querySelectorAll('[data-pack-id]').forEach(btn => {
       btn.addEventListener('click', function() {
-        const variantId = this.dataset.variant;
-        if (!variantId) return;
+        const packId = this.dataset.packId;
+        if (!packId) return;
+        const card = this.closest('.pack-card');
+        const radio = card ? card.querySelector('input[type="radio"]:checked') : null;
+        const isSub = radio ? radio.value === 'sub' : true;
         this.classList.remove('cart-added');
-        void this.offsetWidth; // reflow to retrigger animation
+        void this.offsetWidth;
         this.classList.add('cart-added');
-        addToCart(variantId);
+        addToCart(packId, isSub);
       });
     });
 
