@@ -1788,6 +1788,73 @@
       .testimonials-grid { gap: 10px; }
       .social-stats-row { flex-direction: column; gap: 20px; align-items: center; }
     }
+
+    /* ── INGREDIENT BENEFIT TEXT ── */
+    .unified-ingr-row { align-items: flex-start !important; }
+    .unified-ingr-info { display: flex; flex-direction: column; gap: 3px; }
+    .unified-ingr-benefit {
+      font-size: 11px;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: -0.005em;
+      line-height: 1.35;
+    }
+
+    /* ── PACK OPTIONS (product sub-card) ── */
+    .pack-opts { display: flex; flex-direction: column; gap: 8px; margin: 12px 0 16px; }
+    .pack-opt {
+      position: relative; cursor: pointer;
+      border: 1.5px solid rgba(26,26,26,0.1);
+      border-radius: 12px; overflow: hidden;
+      background: rgba(26,26,26,0.02);
+      transition: border-color 0.18s ease, background 0.18s ease;
+    }
+    .pack-opt:has(.pack-radio:checked) { border-color: var(--near-black); background: rgba(26,26,26,0.05); }
+    .pack-radio { position: absolute; opacity: 0; pointer-events: none; }
+    .pack-opt-inner { display: flex; align-items: center; justify-content: space-between; padding: 13px 16px; }
+    .pack-opt-left { display: flex; flex-direction: column; gap: 2px; }
+    .pack-opt-size { font-size: 13.5px; font-weight: 600; color: var(--near-black); margin: 0; letter-spacing: -0.01em; }
+    .pack-opt-count { font-size: 11px; color: var(--text-muted); margin: 0; }
+    .pack-opt-right { text-align: right; }
+    .pack-opt-price { font-size: 22px; font-weight: 700; color: var(--near-black); margin: 0; letter-spacing: -0.03em; font-family: 'Playfair Display', serif; }
+    .pack-opt-ship { font-size: 10px; color: var(--text-dim); margin: 0; letter-spacing: 0.01em; }
+    .pack-opt-featured { background: rgba(240,224,48,0.06); border-color: rgba(240,224,48,0.5); }
+    .pack-opt-featured:has(.pack-radio:checked) { border-color: var(--near-black); background: rgba(26,26,26,0.05); }
+    .pack-opt-badge {
+      position: absolute; top: 0; right: 0;
+      background: var(--yellow); color: #0A0A0A;
+      font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 3px 9px; border-radius: 0 10px 0 8px;
+    }
+
+    /* ── TRIAL PACK OPTIONS ── */
+    .trial-packs { display: flex; align-items: center; justify-content: center; gap: 20px; margin: 32px auto; }
+    .trial-pack {
+      background: rgba(255,255,255,0.06);
+      border: 1.5px solid rgba(255,255,255,0.1);
+      border-radius: 16px; padding: 22px 32px;
+      text-align: center; position: relative; min-width: 140px;
+    }
+    .trial-pack-featured {
+      background: rgba(240,224,48,0.08);
+      border-color: rgba(240,224,48,0.4);
+      box-shadow: 0 0 0 1px rgba(240,224,48,0.15), 0 8px 32px rgba(240,224,48,0.08);
+    }
+    .trial-pack-badge {
+      position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+      background: var(--yellow); color: #0A0A0A;
+      font-size: 9px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+      padding: 3px 10px; border-radius: 20px; white-space: nowrap;
+    }
+    .trial-pack-size { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.5); margin: 0 0 6px; letter-spacing: 0.04em; text-transform: uppercase; }
+    .trial-pack-price { font-size: 40px; font-weight: 700; color: #fff; margin: 0; letter-spacing: -0.04em; font-family: 'Playfair Display', serif; line-height: 1; }
+    .trial-pack-featured .trial-pack-price { color: var(--yellow); }
+    .trial-pack-note { font-size: 11px; color: rgba(255,255,255,0.35); margin: 5px 0 0; }
+    .trial-pack-divider { font-size: 13px; color: rgba(255,255,255,0.25); font-style: italic; }
+    @media (max-width: 480px) {
+      .trial-packs { flex-direction: column; gap: 12px; }
+      .trial-pack-divider { transform: none; }
+      .trial-pack { padding: 18px 28px; }
+    }
   </style>
 </head>
 <body>
@@ -1867,7 +1934,6 @@
             class="hero-product-img"
           >
           <span class="hero-badge">Lemon Lime</span>
-          <p style="font-size:10px;font-weight:500;color:var(--text-dim);letter-spacing:0.06em;text-transform:uppercase;text-align:center;margin-top:10px;white-space:nowrap;">More flavors coming soon</p>
         </div>
       </div>
     </div>
@@ -1920,12 +1986,18 @@
           <div class="unified-divider"></div>
           <div class="unified-ingr-list">
             <div class="unified-ingr-row">
-              <span class="unified-ingr-name">Caffeine Anhydrous</span>
+              <div class="unified-ingr-info">
+                <span class="unified-ingr-name">Caffeine Anhydrous</span>
+                <span class="unified-ingr-benefit">Fast-onset energy that sharpens focus from the first sip</span>
+              </div>
               <span class="unified-ingr-dose">200mg</span>
             </div>
             <div class="unified-ingr-row">
-              <span class="unified-ingr-name">L-Tyrosine</span>
-              <span class="unified-ingr-dose">800mg</span>
+              <div class="unified-ingr-info">
+                <span class="unified-ingr-name">L-Tyrosine</span>
+                <span class="unified-ingr-benefit">Boosts dopamine to sustain drive under mental stress</span>
+              </div>
+              <span class="unified-ingr-dose">500mg</span>
             </div>
           </div>
         </div>
@@ -1943,12 +2015,18 @@
           <div class="unified-divider"></div>
           <div class="unified-ingr-list">
             <div class="unified-ingr-row">
-              <span class="unified-ingr-name">L-Theanine</span>
+              <div class="unified-ingr-info">
+                <span class="unified-ingr-name">L-Theanine</span>
+                <span class="unified-ingr-benefit">Smooths caffeine's edge — calm focus without the jitters</span>
+              </div>
               <span class="unified-ingr-dose">150mg</span>
             </div>
             <div class="unified-ingr-row">
-              <span class="unified-ingr-name">Acacia Fiber</span>
-              <span class="unified-ingr-dose">Gut support</span>
+              <div class="unified-ingr-info">
+                <span class="unified-ingr-name">Acacia Fiber</span>
+                <span class="unified-ingr-benefit">Prebiotic fiber for gut health and nutrient absorption</span>
+              </div>
+              <span class="unified-ingr-dose">3g</span>
             </div>
           </div>
         </div>
@@ -1968,7 +2046,10 @@
           <div class="unified-divider"></div>
           <div class="unified-ingr-list">
             <div class="unified-ingr-row">
-              <span class="unified-ingr-name">Alpha GPC</span>
+              <div class="unified-ingr-info">
+                <span class="unified-ingr-name">Alpha GPC</span>
+                <span class="unified-ingr-benefit">The brain's preferred choline source for memory and cognition</span>
+              </div>
               <span class="unified-ingr-dose">600mg</span>
             </div>
           </div>
@@ -2062,7 +2143,7 @@
           <img src="brand_assets/SimpleSachet.png" alt="Newt Nootropics Lemon Lime stick pack" class="product-img">
           <span class="product-img-badge">Lemon Lime</span>
         </div>
-        <p class="product-flavor-note">Available in Lemon Lime &nbsp;·&nbsp; More flavors coming soon</p>
+        <p class="product-flavor-note">Available in Lemon Lime</p>
       </div>
 
       <!-- Right: Info + subscription card -->
@@ -2072,33 +2153,41 @@
         <p class="product-tagline">A premium cognitive formula engineered for clean energy, sustained focus, and mental clarity — all day.</p>
 
         <div class="sub-card">
-          <div class="sub-badge">✦ &nbsp;No Risk Offer</div>
-          <p class="sub-title">Start Your 7-Day<br>Free Trial</p>
-          <div class="sub-pricing">
-            <div class="sub-row">
-              <span class="sub-row-label">Today</span>
-              <span class="sub-row-value free">$0.00 &nbsp;—&nbsp; Free Trial</span>
-            </div>
-            <div class="sub-divider"></div>
-            <div class="sub-row">
-              <span class="sub-row-label">After Day 7</span>
-              <span class="sub-row-value">$49.99 &nbsp;/&nbsp; 21-Day Supply</span>
-            </div>
-            <div class="sub-row">
-              <span class="sub-row-label">Recurring Billing</span>
-              <span class="sub-row-value">Every 3 weeks</span>
-            </div>
-            <div class="sub-row">
-              <span class="sub-row-label">Shipping</span>
-              <span class="sub-row-value free">Free</span>
-            </div>
+          <div class="sub-badge">✦ &nbsp;Choose Your Pack</div>
+          <p class="sub-title">Lemon Lime<br>Nootropic Mix</p>
+
+          <div class="pack-opts">
+            <label class="pack-opt" for="pack14">
+              <input type="radio" id="pack14" name="packSize" value="14" class="pack-radio">
+              <div class="pack-opt-inner">
+                <div class="pack-opt-left">
+                  <p class="pack-opt-size">14 Stick Pack</p>
+                  <p class="pack-opt-count">14 servings</p>
+                </div>
+                <div class="pack-opt-right">
+                  <p class="pack-opt-price">$35</p>
+                  <p class="pack-opt-ship">incl. shipping</p>
+                </div>
+              </div>
+            </label>
+            <label class="pack-opt pack-opt-featured" for="pack30">
+              <span class="pack-opt-badge">Best Value</span>
+              <input type="radio" id="pack30" name="packSize" value="30" class="pack-radio" checked>
+              <div class="pack-opt-inner">
+                <div class="pack-opt-left">
+                  <p class="pack-opt-size">30 Stick Pack</p>
+                  <p class="pack-opt-count">30 servings</p>
+                </div>
+                <div class="pack-opt-right">
+                  <p class="pack-opt-price">$53</p>
+                  <p class="pack-opt-ship">incl. shipping</p>
+                </div>
+              </div>
+            </label>
           </div>
-          <label class="sub-check-wrap" for="termCheckHero">
-            <input type="checkbox" id="termCheckHero">
-            <span class="sub-check-text">I understand I will be billed $49.99 every 3 weeks after my 7-day free trial ends. I can cancel anytime.</span>
-          </label>
-          <button class="sub-cta-btn" id="heroCta" data-trial disabled>Start Your Free Trial</button>
-          <p class="sub-footnote">Free shipping · Cancel anytime · No hidden fees</p>
+
+          <button class="sub-cta-btn" id="heroCta" data-trial>Order Now</button>
+          <p class="sub-footnote">Free Shipping &nbsp;·&nbsp; 30-Day Guarantee &nbsp;·&nbsp; No Hidden Fees</p>
         </div>
       </div>
 
@@ -2235,17 +2324,23 @@
     <div class="container" style="position:relative;z-index:1;text-align:center;">
 
       <!-- Badge + Heading -->
-      <div class="trial-section-badge reveal">✦ &nbsp;No Risk Offer</div>
-      <h2 class="trial-heading reveal reveal-delay-1">Start your free<br><em>7 day trial.</em></h2>
+      <div class="trial-section-badge reveal">✦ &nbsp;30-Day Money-Back Guarantee</div>
+      <h2 class="trial-heading reveal reveal-delay-1">Pick your pack.<br><em>Start today.</em></h2>
 
-      <!-- Pricing block -->
-      <div class="trial-price-block reveal reveal-delay-1">
-        <div class="trial-price-top">
-          <span class="trial-price-amount">$49.99</span>
-          <span class="trial-price-per">/ box</span>
+      <!-- Two-option pricing -->
+      <div class="trial-packs reveal reveal-delay-1">
+        <div class="trial-pack">
+          <p class="trial-pack-size">14 Stick Pack</p>
+          <p class="trial-pack-price">$35</p>
+          <p class="trial-pack-note">includes shipping</p>
         </div>
-        <p class="trial-price-meta">21 servings &nbsp;·&nbsp; ships free &nbsp;·&nbsp; billed every 3 weeks</p>
-        <span class="trial-price-free-note">✓ &nbsp;First box is free — no charge today</span>
+        <div class="trial-pack-divider">or</div>
+        <div class="trial-pack trial-pack-featured">
+          <span class="trial-pack-badge">Best Value</span>
+          <p class="trial-pack-size">30 Stick Pack</p>
+          <p class="trial-pack-price">$53</p>
+          <p class="trial-pack-note">includes shipping</p>
+        </div>
       </div>
 
       <!-- Trust chips -->
@@ -2253,25 +2348,25 @@
         <div class="trial-trust">
           <div class="trust-chip">
             <span class="trust-check"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3.5 6L8 1" stroke="#0A0A0A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            7-Day Free Trial
-          </div>
-          <div class="trust-chip">
-            <span class="trust-check"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3.5 6L8 1" stroke="#0A0A0A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             Free Shipping
-          </div>
-          <div class="trust-chip">
-            <span class="trust-check"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3.5 6L8 1" stroke="#0A0A0A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            No Commitment
           </div>
           <div class="trust-chip">
             <span class="trust-check"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3.5 6L8 1" stroke="#0A0A0A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             30-Day Guarantee
           </div>
+          <div class="trust-chip">
+            <span class="trust-check"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3.5 6L8 1" stroke="#0A0A0A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            No Hidden Fees
+          </div>
+          <div class="trust-chip">
+            <span class="trust-check"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3.5 6L8 1" stroke="#0A0A0A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            Ships in 1–2 Days
+          </div>
         </div>
       </div>
 
-      <button class="btn-fill btn-fill-yellow reveal reveal-delay-3" data-trial style="font-size:16px;padding:15px 52px;border:none;cursor:pointer;font-family:'Inter',system-ui,sans-serif;">Try 7 Days Free</button>
-      <p class="trial-disclaimer">No commitment. Cancel anytime, even during your trial.<br>After day 7, auto-enrolls at $49.99 / 21-day supply.</p>
+      <button class="btn-fill btn-fill-yellow reveal reveal-delay-3" data-trial style="font-size:16px;padding:15px 52px;border:none;cursor:pointer;font-family:'Inter',system-ui,sans-serif;">Order Now</button>
+      <p class="trial-disclaimer">Free shipping included. 30-day money-back guarantee. No hidden fees.</p>
 
       <!-- Email capture -->
       <div class="email-capture reveal" style="margin-top:52px;padding-top:40px;border-top:1px solid rgba(255,255,255,0.06);">
