@@ -1801,7 +1801,7 @@
       <li><a href="#ingredients">Ingredients</a></li>
       <li><a href="#trial">Free Trial</a></li>
     </ul>
-    <a href="#" class="nav-cta" data-trial>Start Free Trial</a>
+    <a href="https://newt-9643.myshopify.com/products/30-stick-pack?variant=53492080804119" class="nav-cta" data-trial>Order Now</a>
     <button class="nav-hamburger" aria-label="Open menu" id="navHamburger">
       <span></span><span></span><span></span>
     </button>
@@ -1826,7 +1826,7 @@
         <a href="#trial" class="mobile-menu-link">Free Trial</a>
       </nav>
       <div class="mobile-menu-footer">
-        <a href="#" class="mobile-menu-cta" data-trial>Start Free Trial</a>
+        <a href="https://newt-9643.myshopify.com/products/30-stick-pack?variant=53492080804119" class="mobile-menu-cta" data-trial>Order Now</a>
       </div>
     </div>
   </div>
@@ -1840,7 +1840,7 @@
         <h1 class="hero-headline reveal hero-reveal">Fix Your<br><em>Focus.</em></h1>
         <p class="hero-sub reveal hero-reveal">Clinically dosed for all-day energy and clarity.</p>
         <div class="hero-ctas reveal hero-reveal">
-          <a href="#" class="btn-fill btn-fill-yellow" data-trial>Try 7 Days Free</a>
+          <a href="https://newt-9643.myshopify.com/products/30-stick-pack?variant=53492080804119" class="btn-fill btn-fill-yellow" data-trial>Order Now</a>
           <a href="#comparison" class="btn-ghost">See How It Compares</a>
         </div>
         <p class="hero-microcopy reveal hero-reveal">No card required &nbsp;·&nbsp; Cancel anytime</p>
@@ -2097,7 +2097,7 @@
             <input type="checkbox" id="termCheckHero">
             <span class="sub-check-text">I understand I will be billed $49.99 every 3 weeks after my 7-day free trial ends. I can cancel anytime.</span>
           </label>
-          <button class="sub-cta-btn" id="heroCta" data-trial disabled>Start Your Free Trial</button>
+          <button class="sub-cta-btn" id="heroCta" data-trial>Order Now</button>
           <p class="sub-footnote">Free shipping · Cancel anytime · No hidden fees</p>
         </div>
       </div>
@@ -2270,7 +2270,7 @@
         </div>
       </div>
 
-      <button class="btn-fill btn-fill-yellow reveal reveal-delay-3" data-trial style="font-size:16px;padding:15px 52px;border:none;cursor:pointer;font-family:'Inter',system-ui,sans-serif;">Try 7 Days Free</button>
+      <button class="btn-fill btn-fill-yellow reveal reveal-delay-3" data-trial style="font-size:16px;padding:15px 52px;border:none;cursor:pointer;font-family:'Inter',system-ui,sans-serif;">Order Now</button>
       <p class="trial-disclaimer">No commitment. Cancel anytime, even during your trial.<br>After day 7, auto-enrolls at $49.99 / 21-day supply.</p>
 
       <!-- Email capture -->
@@ -2409,7 +2409,10 @@
     function closeModal() { signupModal.classList.remove('open'); }
 
     document.querySelectorAll('[data-trial]').forEach(el => {
-      el.addEventListener('click', e => { e.preventDefault(); openModal(); });
+      el.addEventListener('click', e => {
+        e.preventDefault();
+        window.location.href = 'https://newt-9643.myshopify.com/products/30-stick-pack?variant=53492080804119';
+      });
     });
     document.getElementById('signupClose').addEventListener('click', closeModal);
     signupModal.addEventListener('click', e => { if (e.target === signupModal) closeModal(); });
@@ -2432,20 +2435,15 @@
         document.getElementById('communityEmail').focus();
         return;
       }
-      document.getElementById('communityForm').style.display = 'none';
-      document.getElementById('communityConfirm').style.display = 'block';
+      window.location.href = 'https://newt-9643.myshopify.com/products/30-stick-pack?variant=53492080804119';
     });
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') { closeModal(); closeCommunity(); }
     });
 
 
-// Product card checkbox gates CTA
-    const termCheckHero = document.getElementById('termCheckHero');
+// Product card CTA links to Shopify
     const heroCta = document.getElementById('heroCta');
-    termCheckHero.addEventListener('change', () => {
-      heroCta.disabled = !termCheckHero.checked;
-    });
 
     // Hamburger menu
     const navHamburger = document.getElementById('navHamburger');
