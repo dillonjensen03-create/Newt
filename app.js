@@ -13,11 +13,11 @@
     signupModal.addEventListener('click', e => { if (e.target === signupModal) closeModal(); });
 
     // ── CART ──────────────────────────────────────────────────────────
-    const CART_KEY = 'newt_cart_v2';
+    const CART_KEY = 'newt_cart_v3'; // v3: removed subscription items
     const PRODUCTS = {
-      '7pack':  { name: '7 Stick Pack',  servings: '7 servings',  subPrice: 18, price: 19, savings: 1, shopifyVariantId: null },           // TODO: add Shopify variant ID when 7-pack is live
-      '14pack': { name: '14 Stick Pack', servings: '14 servings', subPrice: 35, price: 39, savings: 4, shopifyVariantId: '53492076019991' },
-      '30pack': { name: '30 Stick Pack', servings: '30 servings', subPrice: 59, price: 65, savings: 6, shopifyVariantId: '53492080804119' }
+      '7pack':  { name: '7 Stick Pack',  servings: '7 servings',  price: 19, shopifyVariantId: null },           // TODO: add Shopify variant ID when 7-pack is live
+      '14pack': { name: '14 Stick Pack', servings: '14 servings', price: 39, shopifyVariantId: '53492076019991' },
+      '30pack': { name: '30 Stick Pack', servings: '30 servings', price: 65, shopifyVariantId: '53492080804119' }
     };
 
     function getCart() {
@@ -26,11 +26,11 @@
     }
     function saveCart(cart) { localStorage.setItem(CART_KEY, JSON.stringify(cart)); }
 
-    function addToCart(packId, isSub) {
+    function addToCart(packId) {
       const cart = getCart();
       const existing = cart.find(i => i.packId === packId);
-      if (existing) { existing.qty++; existing.isSub = isSub; }
-      else { cart.push({ packId, qty: 1, isSub }); }
+      if (existing) { existing.qty++; }
+      else { cart.push({ packId, qty: 1 }); }
       saveCart(cart);
       renderCart();
       openCartDrawer();
@@ -51,7 +51,7 @@
     function getTotal() {
       return getCart().reduce((s, i) => {
         const p = PRODUCTS[i.packId];
-        return s + ((i.isSub ? p.subPrice : p.price) || 0) * i.qty;
+        return s + ((p && p.price) || 0) * i.qty;
       }, 0);
     }
     function getItemCount() { return getCart().reduce((s, i) => s + i.qty, 0); }
@@ -94,16 +94,13 @@
       cartItems.innerHTML = cart.map(item => {
         const p = PRODUCTS[item.packId];
         if (!p) return '';
-        const itemPrice = (item.isSub ? p.subPrice : p.price) * item.qty;
-        const typeLabel = item.isSub
-          ? `<span style="display:inline-block;background:rgba(34,197,94,0.12);color:#15803d;font-size:9px;font-weight:800;letter-spacing:0.05em;text-transform:uppercase;padding:1px 6px;border-radius:980px;margin-left:4px;">Subscribe</span>`
-          : '';
+        const itemPrice = p.price * item.qty;
         return `
           <div class="cart-item">
             <div class="cart-item-icon">🦎</div>
             <div class="cart-item-info">
-              <p class="cart-item-name">${p.name}${typeLabel}</p>
-              <p class="cart-item-sub">${p.servings} · ${item.isSub ? 'monthly' : 'one-time'}</p>
+              <p class="cart-item-name">${p.name}</p>
+              <p class="cart-item-sub">${p.servings} · one-time purchase</p>
               <div class="cart-qty-row">
                 <button class="cart-qty-btn" onclick="updateQty('${item.packId}',-1)" aria-label="Remove one">−</button>
                 <span class="cart-qty-num">${item.qty}</span>
@@ -126,18 +123,15 @@
       document.body.style.overflow = '';
     }
 
-    // Add to cart — reads the radio selection inside the card
+    // Add to cart
     document.querySelectorAll('[data-pack-id]').forEach(btn => {
       btn.addEventListener('click', function() {
         const packId = this.dataset.packId;
         if (!packId) return;
-        const card = this.closest('.pack-card');
-        const radio = card ? card.querySelector('input[type="radio"]:checked') : null;
-        const isSub = radio ? radio.value === 'sub' : true;
         this.classList.remove('cart-added');
         void this.offsetWidth;
         this.classList.add('cart-added');
-        addToCart(packId, isSub);
+        addToCart(packId);
       });
     });
 
@@ -168,7 +162,22 @@
         document.getElementById('communityEmail').focus();
         return;
       }
-      window.location.href = 'https://newt-9643.myshopify.com/products/30-stick-pack?variant=53492080804119';
+      // Submit to Shopify customer capture (tags the email as a newsletter signup)
+      const body = new URLSearchParams({
+        form_type: 'customer',
+        utf8: '✓',
+        'contact[email]': email,
+        'contact[tags]': 'newsletter,website'
+      });
+      fetch('https://newt-9643.myshopify.com/contact', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body.toString()
+      }).catch(() => {});
+      // Show confirmation state
+      document.getElementById('communityForm').style.display = 'none';
+      document.getElementById('communityConfirm').style.display = 'block';
     });
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') { closeModal(); closeCommunity(); closeCartDrawer(); }

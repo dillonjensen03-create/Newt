@@ -2166,6 +2166,13 @@
     .pack-purchase-note {
       font-size: 10.5px; color: var(--text-dim); margin-top: 3px; letter-spacing: -0.01em;
     }
+    .pack-price-block {
+      border: 1.5px solid rgba(26,26,26,0.09);
+      border-radius: 10px; padding: 14px 16px;
+      text-align: center;
+    }
+    .pack-price-block .pack-purchase-price { font-size: 26px; }
+    .pack-price-block .pack-purchase-note { margin-top: 5px; }
     .pack-save-badge {
       display: inline-flex; align-items: center;
       background: rgba(34,197,94,0.12); color: #15803d;
