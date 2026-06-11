@@ -2215,3 +2215,84 @@
       font-size: 8.5px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase;
       padding: 2px 7px; border-radius: 980px;
     }
+
+    /* ── INGREDIENT MARQUEE (Potion-style) ── */
+    .ingr-strip {
+      background: var(--black);
+      padding: 18px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .ingr-strip-track {
+      display: flex;
+      width: max-content;
+      animation: logoScroll 38s linear infinite;
+      will-change: transform;
+    }
+    .ingr-strip-group { display: flex; align-items: center; flex-shrink: 0; }
+    .ingr-item { display: inline-flex; align-items: center; gap: 9px; margin: 0 26px; }
+    .ingr-ic { width: 16px; height: 16px; color: var(--yellow); flex-shrink: 0; }
+    .ingr-name {
+      font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: #fff;
+    }
+    .ingr-dose {
+      font-size: 12px; font-weight: 800; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--yellow);
+    }
+
+    /* ── DARK COMPARISON ── */
+    .comp-dark { background: var(--black); }
+    .comp-dark .comp-intro { color: var(--text-white-muted); }
+    .comp-dark .comp-table th { color: #fff; border-bottom-color: rgba(255,255,255,0.12); }
+    .comp-dark .comp-table th:first-child { color: var(--text-white-muted); }
+    .comp-dark .comp-table th.comp-newt-head {
+      background: rgba(240,224,48,0.12);
+      border-bottom-color: rgba(240,224,48,0.6);
+      color: var(--yellow);
+    }
+    .comp-dark .comp-table td { color: var(--text-white-muted); border-bottom-color: rgba(255,255,255,0.07); }
+    .comp-dark .comp-table td:first-child { color: #fff; }
+    .comp-dark .comp-table td.comp-newt-col { background: rgba(240,224,48,0.07); }
+    .comp-dark .comp-table tbody tr:hover td { background: rgba(255,255,255,0.03); }
+    .comp-dark .comp-table tbody tr:hover td.comp-newt-col { background: rgba(240,224,48,0.11); }
+    .comp-hours { color: var(--yellow); font-weight: 800; font-size: 15px; letter-spacing: -0.01em; }
+    .cmark {
+      display: inline-flex; width: 26px; height: 26px; border-radius: 50%;
+      align-items: center; justify-content: center; vertical-align: middle;
+    }
+    .cmark svg { width: 12px; height: 12px; }
+    .cmark-yes { background: rgba(240,224,48,0.14); }
+    .cmark-no { background: rgba(229,72,77,0.12); }
+    .cmark-mid { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.45); font-size: 14px; font-weight: 700; }
+    .comp-chips { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 30px; }
+    .comp-chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 600; color: #fff;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 9px 16px; border-radius: 980px; white-space: nowrap;
+    }
+    .comp-chip svg { width: 11px; height: 11px; flex-shrink: 0; }
+
+    /* ── DARK RESEARCH ── */
+    .social-dark { background: var(--black); }
+    .social-dark .social-rating-text { color: #fff; }
+    .social-dark .testimonial-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      box-shadow: none;
+    }
+    .social-dark .testimonial-card:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.14);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    .social-dark .t-quote { color: rgba(255,255,255,0.72); }
+    .social-dark .t-name { color: #fff; }
+    .social-dark .t-role { color: rgba(255,255,255,0.45); }
+    .social-dark .t-avatar { background: var(--yellow); color: var(--black); }
+    .social-dark .social-stat-num { color: var(--yellow); }
+    .social-dark .social-stat-label { color: rgba(255,255,255,0.5); }
