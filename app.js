@@ -13,7 +13,7 @@
     const PRODUCTS = {
       '14pack': { name: '14-Day Supply',  servings: '14 servings', price: 39,  subPrice: 33, subEvery: 'every 2 weeks',  shopifyVariantId: '53492076019991', sellingPlanId: null },
       '30pack': { name: '1-Month Supply', servings: '30 servings', price: 65,  subPrice: 55, subEvery: 'monthly',        shopifyVariantId: '53492080804119', sellingPlanId: null },
-      '60pack': { name: '2-Month Supply', servings: '60 servings', price: 109, subPrice: 93, subEvery: 'every 2 months', shopifyVariantId: null, sellingPlanId: null }  // TODO: create 60-stick product in Shopify
+      '60pack': { name: '2-Month Supply', servings: '60 servings', price: 109, subPrice: 93, subEvery: 'every 2 months', shopifyVariantId: '53534384029975', sellingPlanId: null }
     };
 
     function getCart() {
