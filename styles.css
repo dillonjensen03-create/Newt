@@ -2296,3 +2296,28 @@
     .social-dark .t-avatar { background: var(--yellow); color: var(--black); }
     .social-dark .social-stat-num { color: var(--yellow); }
     .social-dark .social-stat-label { color: rgba(255,255,255,0.5); }
+
+    /* ── NAV ORDER CTA ── */
+    .nav-order-btn {
+      display: inline-flex; align-items: center;
+      background: var(--yellow); color: var(--black);
+      font-size: 13px; font-weight: 700; letter-spacing: -0.01em;
+      padding: 9px 18px; border-radius: 980px;
+      text-decoration: none;
+      box-shadow: 0 2px 12px rgba(240,224,48,0.3);
+      transition: background 0.18s ease, transform 0.15s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.18s ease;
+    }
+    .nav-order-btn:hover { background: var(--yellow-hover); transform: scale(1.04); box-shadow: 0 4px 18px rgba(240,224,48,0.45); }
+    .nav-order-btn:active { transform: scale(0.97); }
+    .nav-order-btn:focus-visible { outline: 2px solid var(--yellow); outline-offset: 2px; }
+    @media (max-width: 720px) {
+      .nav-order-btn { display: none; }
+    }
+
+    /* ── FAQ GROUP LABELS ── */
+    .faq-group-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+    .faq-group-label-gap { margin-top: 36px; }

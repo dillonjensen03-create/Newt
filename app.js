@@ -1,23 +1,17 @@
-    const signupModal = document.getElementById('signupModal');
-    function openModal() { signupModal.classList.add('open'); }
-    function closeModal() { signupModal.classList.remove('open'); }
-
-    // data-trial links now just scroll to pack selector
+    // data-trial links scroll to pack selector
     document.querySelectorAll('[data-trial]').forEach(el => {
       el.addEventListener('click', e => {
         e.preventDefault();
         document.getElementById('trial').scrollIntoView({ behavior: 'smooth' });
       });
     });
-    document.getElementById('signupClose').addEventListener('click', closeModal);
-    signupModal.addEventListener('click', e => { if (e.target === signupModal) closeModal(); });
 
     // ── CART ──────────────────────────────────────────────────────────
-    const CART_KEY = 'newt_cart_v3'; // v3: removed subscription items
+    const CART_KEY = 'newt_cart_v4'; // v4: supply-based lineup (14-day / 1-month / 2-month)
     const PRODUCTS = {
-      '7pack':  { name: '7 Stick Pack',  servings: '7 servings',  price: 19, shopifyVariantId: null },           // TODO: add Shopify variant ID when 7-pack is live
-      '14pack': { name: '14 Stick Pack', servings: '14 servings', price: 39, shopifyVariantId: '53492076019991' },
-      '30pack': { name: '30 Stick Pack', servings: '30 servings', price: 65, shopifyVariantId: '53492080804119' }
+      '14pack': { name: '14-Day Supply',  servings: '14 servings', price: 39,  shopifyVariantId: '53492076019991' },
+      '30pack': { name: '1-Month Supply', servings: '30 servings', price: 65,  shopifyVariantId: '53492080804119' },
+      '60pack': { name: '2-Month Supply', servings: '60 servings', price: 109, shopifyVariantId: null }  // TODO: create 60-stick product in Shopify, add variant ID + matching price
     };
 
     function getCart() {
@@ -180,7 +174,7 @@
       document.getElementById('communityConfirm').style.display = 'block';
     });
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') { closeModal(); closeCommunity(); closeCartDrawer(); }
+      if (e.key === 'Escape') { closeCommunity(); closeCartDrawer(); }
     });
 
 
