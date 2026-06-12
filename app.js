@@ -7,11 +7,13 @@
     });
 
     // ── CART ──────────────────────────────────────────────────────────
-    const CART_KEY = 'newt_cart_v4'; // v4: supply-based lineup (14-day / 1-month / 2-month)
+    const CART_KEY = 'newt_cart_v5'; // v5: subscribe & save re-introduced
+    // IMPORTANT: sellingPlanId values come from the Shopify Subscriptions app.
+    // Until they are filled in, subscription checkout CANNOT be fulfilled — do not deploy.
     const PRODUCTS = {
-      '14pack': { name: '14-Day Supply',  servings: '14 servings', price: 39,  shopifyVariantId: '53492076019991' },
-      '30pack': { name: '1-Month Supply', servings: '30 servings', price: 65,  shopifyVariantId: '53492080804119' },
-      '60pack': { name: '2-Month Supply', servings: '60 servings', price: 109, shopifyVariantId: null }  // TODO: create 60-stick product in Shopify, add variant ID + matching price
+      '14pack': { name: '14-Day Supply',  servings: '14 servings', price: 39,  subPrice: 33, subEvery: 'every 2 weeks',  shopifyVariantId: '53492076019991', sellingPlanId: null },
+      '30pack': { name: '1-Month Supply', servings: '30 servings', price: 65,  subPrice: 55, subEvery: 'monthly',        shopifyVariantId: '53492080804119', sellingPlanId: null },
+      '60pack': { name: '2-Month Supply', servings: '60 servings', price: 109, subPrice: 93, subEvery: 'every 2 months', shopifyVariantId: null, sellingPlanId: null }  // TODO: create 60-stick product in Shopify
     };
 
     function getCart() {
@@ -20,11 +22,11 @@
     }
     function saveCart(cart) { localStorage.setItem(CART_KEY, JSON.stringify(cart)); }
 
-    function addToCart(packId) {
+    function addToCart(packId, isSub) {
       const cart = getCart();
       const existing = cart.find(i => i.packId === packId);
-      if (existing) { existing.qty++; }
-      else { cart.push({ packId, qty: 1 }); }
+      if (existing) { existing.qty++; existing.isSub = isSub; }
+      else { cart.push({ packId, qty: 1, isSub }); }
       saveCart(cart);
       renderCart();
       openCartDrawer();
@@ -45,7 +47,8 @@
     function getTotal() {
       return getCart().reduce((s, i) => {
         const p = PRODUCTS[i.packId];
-        return s + ((p && p.price) || 0) * i.qty;
+        if (!p) return s;
+        return s + (i.isSub ? p.subPrice : p.price) * i.qty;
       }, 0);
     }
     function getItemCount() { return getCart().reduce((s, i) => s + i.qty, 0); }
@@ -55,6 +58,13 @@
       const checkoutItems = cart.filter(i => PRODUCTS[i.packId]?.shopifyVariantId);
       if (!checkoutItems.length) return 'https://newt-9643.myshopify.com';
       const items = checkoutItems.map(i => `${PRODUCTS[i.packId].shopifyVariantId}:${i.qty}`).join(',');
+      // Single subscription line item: attach its selling plan so Shopify charges the sub price.
+      // NOTE: mixed carts (sub + one-time together) need the Storefront Cart API — until that's
+      // built, the selling plan can only be applied when the cart is one subscription item.
+      const subItems = checkoutItems.filter(i => i.isSub && PRODUCTS[i.packId].sellingPlanId);
+      if (subItems.length === 1 && checkoutItems.length === 1) {
+        return `https://newt-9643.myshopify.com/cart/${items}?selling_plan=${PRODUCTS[subItems[0].packId].sellingPlanId}`;
+      }
       return `https://newt-9643.myshopify.com/cart/${items}`;
     }
 
@@ -88,13 +98,16 @@
       cartItems.innerHTML = cart.map(item => {
         const p = PRODUCTS[item.packId];
         if (!p) return '';
-        const itemPrice = p.price * item.qty;
+        const itemPrice = (item.isSub ? p.subPrice : p.price) * item.qty;
+        const typeLabel = item.isSub
+          ? `<span style="display:inline-block;background:rgba(34,197,94,0.12);color:#15803d;font-size:9px;font-weight:800;letter-spacing:0.05em;text-transform:uppercase;padding:1px 6px;border-radius:980px;margin-left:4px;">Subscribe</span>`
+          : '';
         return `
           <div class="cart-item">
             <div class="cart-item-icon">🦎</div>
             <div class="cart-item-info">
-              <p class="cart-item-name">${p.name}</p>
-              <p class="cart-item-sub">${p.servings} · one-time purchase</p>
+              <p class="cart-item-name">${p.name}${typeLabel}</p>
+              <p class="cart-item-sub">${p.servings} · ${item.isSub ? 'delivered ' + p.subEvery : 'one-time purchase'}</p>
               <div class="cart-qty-row">
                 <button class="cart-qty-btn" onclick="updateQty('${item.packId}',-1)" aria-label="Remove one">−</button>
                 <span class="cart-qty-num">${item.qty}</span>
@@ -117,17 +130,55 @@
       document.body.style.overflow = '';
     }
 
-    // Add to cart
+    // Add to cart — reads the sub/one-time radio inside the card
     document.querySelectorAll('[data-pack-id]').forEach(btn => {
       btn.addEventListener('click', function() {
         const packId = this.dataset.packId;
         if (!packId) return;
+        const card = this.closest('.pack-card');
+        const radio = card ? card.querySelector('input[type="radio"]:checked') : null;
+        const isSub = radio ? radio.value === 'sub' : true;
         this.classList.remove('cart-added');
         void this.offsetWidth;
         this.classList.add('cart-added');
-        addToCart(packId);
+        addToCart(packId, isSub);
       });
     });
+
+    // ── INTERACTIVE INGREDIENTS ─────────────────────────────────────
+    const INGREDIENTS = {
+      caffeine:     { name: 'Caffeine',     dose: '200mg', tag: 'The Spark',       meter: 25,
+                      desc: "Clean lift in about 20 minutes. Paired with L-Theanine so it doesn't bite back later." },
+      theanine:     { name: 'L-Theanine',   dose: '150mg', tag: 'The Smoother',    meter: 19,
+                      desc: "Found in green tea. Rounds off caffeine's edges — calm and locked in, never sleepy." },
+      gpc:          { name: 'Alpha GPC',    dose: '600mg', tag: 'The Memory Fuel', meter: 75,
+                      desc: 'Feeds your brain choline to build acetylcholine — the neurotransmitter behind learning and recall.' },
+      tyrosine:     { name: 'L-Tyrosine',   dose: '800mg', tag: 'The Stress Armor', meter: 100,
+                      desc: 'Raw material for dopamine. Keeps your drive up when deadlines, reps, or chaos hit.' },
+      electrolytes: { name: 'Electrolytes', dose: '400mg sodium', tag: 'The Hydrator', meter: 50,
+                      desc: 'Focus runs on water. Sodium pulls it where it\'s needed — no sugar required.' }
+    };
+    const insideDetail = document.getElementById('insideDetail');
+    if (insideDetail) {
+      document.querySelectorAll('.inside-chip').forEach(chip => {
+        chip.addEventListener('click', function() {
+          const data = INGREDIENTS[this.dataset.ingr];
+          if (!data) return;
+          document.querySelectorAll('.inside-chip').forEach(c => {
+            c.classList.toggle('active', c === this);
+            c.setAttribute('aria-selected', c === this ? 'true' : 'false');
+          });
+          insideDetail.classList.remove('switching');
+          void insideDetail.offsetWidth;
+          insideDetail.classList.add('switching');
+          document.getElementById('insideName').textContent = data.name;
+          document.getElementById('insideDose').textContent = data.dose;
+          document.getElementById('insideTag').textContent = data.tag;
+          document.getElementById('insideDesc').textContent = data.desc;
+          document.getElementById('insideMeter').style.width = data.meter + '%';
+        });
+      });
+    }
 
     // Cart open/close events
     document.getElementById('navCartBtn').addEventListener('click', openCartDrawer);
