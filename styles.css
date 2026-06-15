@@ -6,8 +6,8 @@
       --black: #0A0A0A;
       --near-black: #1A1A1A;
       --text: #1A1A1A;
-      --text-muted: rgba(26,26,26,0.5);
-      --text-dim: rgba(26,26,26,0.35);
+      --text-muted: rgba(26,26,26,0.62);
+      --text-dim: rgba(26,26,26,0.50);
       --text-white: #fff;
       --text-white-muted: rgba(255,255,255,0.55);
     }
@@ -115,7 +115,7 @@
       background: var(--cream);
       display: flex;
       align-items: center;
-      padding: 100px 40px 60px;
+      padding: 80px 40px 60px;
       position: relative;
       overflow: hidden;
     }
@@ -258,11 +258,6 @@
       border-radius: 0;
       mix-blend-mode: multiply;
       filter: contrast(1.18) brightness(1.06) saturate(1.18) drop-shadow(0 8px 28px rgba(0,0,0,0.22));
-      transition: transform 0.4s ease, filter 0.4s ease;
-    }
-    .hero-product-img:hover {
-      transform: translateY(-6px) scale(1.02);
-      filter: contrast(1.22) brightness(1.09) saturate(1.22) drop-shadow(0 16px 40px rgba(0,0,0,0.28));
     }
     .hero-badge {
       position: absolute;
@@ -538,12 +533,12 @@
     }
     .perk-label {
       font-size: 12px;
-      color: rgba(255,255,255,0.38);
+      color: rgba(255,255,255,0.55);
       letter-spacing: -0.01em;
     }
     .trial-disclaimer {
       font-size: 12px;
-      color: rgba(255,255,255,0.22);
+      color: rgba(255,255,255,0.50);
       letter-spacing: -0.01em;
       margin-top: 18px;
       line-height: 1.6;
@@ -672,7 +667,7 @@
     .footer-links a:hover { color: rgba(255,255,255,0.7); }
     .footer-copy {
       font-size: 12px;
-      color: rgba(255,255,255,0.18);
+      color: rgba(255,255,255,0.44);
     }
 
     /* ── PRODUCT SECTION ── */
@@ -1639,7 +1634,7 @@
     }
     .trial-price-meta {
       font-size: 12px; font-weight: 500;
-      color: rgba(255,255,255,0.28); letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.52); letter-spacing: 0.08em;
       text-transform: uppercase;
     }
     .trial-price-free-note {
@@ -1751,8 +1746,8 @@
     /* ── REVEAL ANIMATIONS ── */
     .reveal {
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+      transform: translateY(10px);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
       will-change: opacity, transform;
     }
     .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -1903,7 +1898,7 @@
     }
     .trial-pack-option.highlighted .trial-pack-price { color: var(--yellow); }
     .trial-pack-shipping {
-      font-size: 11px; color: rgba(255,255,255,0.28); letter-spacing: -0.01em; margin-top: 3px;
+      font-size: 11px; color: rgba(255,255,255,0.52); letter-spacing: -0.01em; margin-top: 3px;
     }
     .trial-pack-btn {
       margin-top: 14px; width: 100%; padding: 11px 0;

@@ -7,7 +7,7 @@
     });
 
     // ── CART ──────────────────────────────────────────────────────────
-    const CART_KEY = 'newt_cart_v5'; // v5: subscribe & save re-introduced
+    const CART_KEY = 'newt_cart_v6'; // v6: sanitize on load, flush stale dev data
     // IMPORTANT: sellingPlanId values come from the Shopify Subscriptions app.
     // Until they are filled in, subscription checkout CANNOT be fulfilled — do not deploy.
     const PRODUCTS = {
@@ -186,7 +186,11 @@
     document.getElementById('cartOverlay').addEventListener('click', closeCartDrawer);
     document.getElementById('cartContinueBtn').addEventListener('click', closeCartDrawer);
 
-    // Init cart on load
+    // Init cart on load — sanitize first to flush stale/unknown items
+    (function sanitizeCart() {
+      const clean = getCart().filter(i => PRODUCTS[i.packId] && i.qty > 0);
+      saveCart(clean);
+    })();
     renderCart();
 
     // Community modal
@@ -263,7 +267,7 @@
       entries.forEach(e => {
         if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    }, { threshold: 0, rootMargin: '0px 0px 120px 0px' });
     document.querySelectorAll('.reveal:not(.hero-reveal)').forEach(el => revealObs.observe(el));
 
     // Hero elements animate on page load (staggered)
