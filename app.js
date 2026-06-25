@@ -284,6 +284,27 @@
     }, { threshold: 0, rootMargin: '0px 0px 120px 0px' });
     document.querySelectorAll('.reveal:not(.hero-reveal)').forEach(el => revealObs.observe(el));
 
+    // Animated count-up for stat numbers (e.g. the stats band on the landing page)
+    function animateCount(el) {
+      const target = parseFloat(el.dataset.countTo);
+      const suffix = el.dataset.suffix || '';
+      const duration = 1100;
+      const start = performance.now();
+      function tick(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(target * eased) + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+    const countObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { animateCount(e.target); countObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.4 });
+    document.querySelectorAll('[data-count-to]').forEach(el => countObs.observe(el));
+
     // Hero elements animate on page load (staggered)
     document.querySelectorAll('.hero-reveal').forEach((el, i) => {
       setTimeout(() => el.classList.add('visible'), 80 + i * 130);
