@@ -130,6 +130,19 @@
       document.body.style.overflow = '';
     }
 
+    // CTA label mirrors the selected purchase type, so the button always
+    // describes what actually happens at checkout
+    document.querySelectorAll('.pack-card').forEach(card => {
+      const cta = card.querySelector('.pack-card-cta');
+      if (!cta) return;
+      function syncCtaLabel() {
+        const checked = card.querySelector('input[type="radio"]:checked');
+        cta.textContent = checked && checked.value === 'sub' ? 'Start Subscription' : 'Add to Cart';
+      }
+      card.querySelectorAll('input[type="radio"]').forEach(r => r.addEventListener('change', syncCtaLabel));
+      syncCtaLabel();
+    });
+
     // Add to cart — reads the sub/one-time radio inside the card
     document.querySelectorAll('[data-pack-id]').forEach(btn => {
       btn.addEventListener('click', function() {
@@ -176,6 +189,7 @@
           document.getElementById('insideTag').textContent = data.tag;
           document.getElementById('insideDesc').textContent = data.desc;
           document.getElementById('insideMeter').style.width = data.meter + '%';
+          document.getElementById('insideMeterPct').textContent = data.meter + '%';
         });
       });
     }
@@ -274,3 +288,13 @@
     document.querySelectorAll('.hero-reveal').forEach((el, i) => {
       setTimeout(() => el.classList.add('visible'), 80 + i * 130);
     });
+
+    // Mobile sticky CTA hides itself once the pack selector is already on screen
+    const mobileStickyCta = document.getElementById('mobileStickyCta');
+    const trialSection = document.getElementById('trial');
+    if (mobileStickyCta && trialSection) {
+      const stickyObs = new IntersectionObserver(entries => {
+        entries.forEach(e => mobileStickyCta.classList.toggle('hidden', e.isIntersecting));
+      }, { threshold: 0 });
+      stickyObs.observe(trialSection);
+    }
